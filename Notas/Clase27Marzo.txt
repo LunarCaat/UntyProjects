@@ -17,3 +17,9 @@ Para hacer cambios
 git add --all
 
 git commit -m "Mensaje"
+
+La resolucion de la pantalla no debe afectar al jugador.
+
+Por ej: Si la pantalla es 16:9 y le da poco tiempo de reaccion aproposito
+quien tenga un monitor de 16:10 tendra injusta ventaja
+
