@@ -1,0 +1,19 @@
+https://github.com/username/repositorio
+
+git remote -v
+
+Para pegar en consola:
+Shift+Insert
+
+
+
+Para moverse:
+git cd Direccion
+
+Para clonar:
+git clone direccion NombreDeLaCarpeta
+
+Para hacer cambios
+git add --all
+
+git commit -m "Mensaje"
