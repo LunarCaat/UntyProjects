@@ -32,3 +32,6 @@ R: No usan framework de la misma version. Visual usa el ultimo y Unity usa uno m
 Porque es asi?
 
 R: Unity no cambia de framework constantemente para guardar compatibilidad y por costo de implementacion.
+
+Los GameObjects pesan tanto como piensan las variables en los componentes.
+Por ejemplo si el transform tiene float por cada campo(9). Pesara 9 veces el float aproximadamente.
