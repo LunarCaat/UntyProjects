@@ -1,0 +1,9 @@
+Verificar si un valor es nulo puede evitar errores y ahorrar trabajar en vano con valores que no existen o nulos.
+Ej: Si tengo que ver los pixeles de las pantalla y la computadora esta apagada, no es necesario analizarlo
+ya que no habria forma y seria una perdida de tiempo.
+
+Este juego puede variar poniendo condiciones de derrota como limite de equivocaciones o si
+elijes adivinar la palabra completa y fallas, pierdes.
+
+Revisar para evitar nombrar metodos con el mismo nombre y para ver el ciclo de vida de los MonoBehaviours:
+https://docs.unity3d.com/Manual/ExecutionOrder.html

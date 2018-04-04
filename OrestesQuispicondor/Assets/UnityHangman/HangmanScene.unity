@@ -995,8 +995,10 @@ MonoBehaviour:
   palabra: Zelda
   outputText: {fileID: 2070483311}
   inputText: {fileID: 454903218}
+  maximoFallas: 4
   successSound: {fileID: 8300000, guid: 0cd469a6d170d564c8925dbe94ee253b, type: 3}
   failSound: {fileID: 8300000, guid: 576245318571e524f854aada337dcb25, type: 3}
+  winSound: {fileID: 8300000, guid: fdcb6263f71ccbb4abd316e01d99074e, type: 3}
   camSource: {fileID: 1438569355}
 --- !u!4 &1938658330
 Transform:
@@ -1067,12 +1069,12 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
