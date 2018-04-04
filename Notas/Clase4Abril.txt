@@ -7,3 +7,7 @@ elijes adivinar la palabra completa y fallas, pierdes.
 
 Revisar para evitar nombrar metodos con el mismo nombre y para ver el ciclo de vida de los MonoBehaviours:
 https://docs.unity3d.com/Manual/ExecutionOrder.html
+
+GameObject son conjunto de componentes y atributos.
+
+Ir creando un laberinto para la proxima clase.

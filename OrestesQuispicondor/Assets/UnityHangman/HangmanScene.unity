@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2ed8b66ff8def4291599da45cdd0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palabra: Zelda
+  palabra: Splatoon
   outputText: {fileID: 2070483311}
   inputText: {fileID: 454903218}
   maximoFallas: 4
