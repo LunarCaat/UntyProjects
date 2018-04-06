@@ -1,0 +1,3 @@
+Averiguar mas de los magic numbers.
+
+Las variables privadas en el monobehaviour (hardcodeadas) son mejor asignarlas antes del metodo start.
