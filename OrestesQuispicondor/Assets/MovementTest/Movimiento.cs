@@ -11,9 +11,23 @@ public class Movimiento : MonoBehaviour {
     //public float limit;
 
     public Vector3 limit;
+    //private Vector3 initialRotation;
+    private Quaternion tempQuaternion;
+
+    private Vector3 rotationRight;
+    private Vector3 rotationLeft;
+    private Vector3 rotationForward;
+    private Vector3 rotationBack;
+
+
+    private float tempLimit;
     // Use this for initialization
     void Start () {
-        
+        Vector3 initialRotation = transform.rotation.eulerAngles;
+        rotationRight = initialRotation + new Vector3(0, -90, 0);
+        rotationLeft = initialRotation + new Vector3(0, 90, 0);
+        rotationForward = initialRotation + new Vector3(0, 0, 0);
+        rotationBack = initialRotation + new Vector3(0, 180, 0);
         //Se asigna la pocision especifica:
         //transform.position = new Vector3(1,0,0);
 
@@ -60,20 +74,20 @@ public class Movimiento : MonoBehaviour {
 
         //transform.Translate(direction.normalized * speed * Time.deltaTime);
 
-        Vector3 currentMovement = Vector3.zero;
-        if (transform.position.x < limit.x)
-        {
-            currentMovement.x = direction.x * speed;
-        }
-        if (transform.position.y < limit.y)
-        {
-            currentMovement.y = direction.y * speed;
-        }
-        if (transform.position.z < limit.z)
-        {
-            currentMovement.z = direction.z * speed;
-        }
-        transform.Translate(currentMovement * Time.deltaTime);
+        //Vector3 currentMovement = Vector3.zero;
+        //if (transform.position.x < limit.x)
+        //{
+        //    currentMovement.x = direction.x * speed;
+        //}
+        //if (transform.position.y < limit.y)
+        //{
+        //    currentMovement.y = direction.y * speed;
+        //}
+        //if (transform.position.z < limit.z)
+        //{
+        //    currentMovement.z = direction.z * speed;
+        //}
+        //transform.Translate(currentMovement * Time.deltaTime);
 
 
 
@@ -83,5 +97,35 @@ public class Movimiento : MonoBehaviour {
         //    transform.translate(direction.normalized * speed * time.deltatime);
         //}
 
+
+        if (Input.GetKey(KeyCode.A) && transform.position.x > -limit.x)
+        {
+            
+            transform.eulerAngles = rotationLeft;
+
+            transform.Translate(Vector3.left * speed * Time.deltaTime,Space.World);
+        }
+        if (Input.GetKey(KeyCode.D) && transform.position.x < limit.x)
+        {
+           transform.eulerAngles = rotationRight;
+            transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+        }
+        if (Input.GetKey(KeyCode.W) && transform.position.z < limit.z)
+        {
+            transform.eulerAngles = rotationBack;
+            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
+        }
+        if (Input.GetKey(KeyCode.S) && transform.position.z > -limit.z)
+        {
+            transform.eulerAngles = rotationForward;
+            transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+        }
+
+        //if (Input.GetKeyUp(KeyCode.D))
+        //{
+        //    tempLimit= Mathf.Ceil(transform.position.x);
+        //}
     }
+
+
 }
