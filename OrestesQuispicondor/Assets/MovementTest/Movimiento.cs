@@ -19,7 +19,10 @@ public class Movimiento : MonoBehaviour {
     private Vector3 rotationForward;
     private Vector3 rotationBack;
 
-
+    private bool rightAutoMoving=false;
+    private bool leftAutoMoving = false;
+    private bool upAutoMoving = false;
+    private bool downAutoMoving = false;
     private float tempLimit;
     // Use this for initialization
     void Start () {
@@ -100,16 +103,30 @@ public class Movimiento : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.A) && transform.position.x > -limit.x)
         {
-            
+            leftAutoMoving = false;
             transform.eulerAngles = rotationLeft;
-
-            transform.Translate(Vector3.left * speed * Time.deltaTime,Space.World);
+            transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
         }
+        else if (Input.GetKeyUp(KeyCode.A))
+        {
+            leftAutoMoving = true;
+            tempLimit = Mathf.Floor(transform.position.x);
+        }
+
+
         if (Input.GetKey(KeyCode.D) && transform.position.x < limit.x)
         {
-           transform.eulerAngles = rotationRight;
+            rightAutoMoving = false;
+            transform.eulerAngles = rotationRight;
             transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
         }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            rightAutoMoving = true;
+            tempLimit = Mathf.Ceil(transform.position.x);
+        }
+
+
         if (Input.GetKey(KeyCode.W) && transform.position.z < limit.z)
         {
             transform.eulerAngles = rotationBack;
@@ -121,10 +138,32 @@ public class Movimiento : MonoBehaviour {
             transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
         }
 
-        //if (Input.GetKeyUp(KeyCode.D))
-        //{
-        //    tempLimit= Mathf.Ceil(transform.position.x);
-        //}
+
+        //Se mueve automaticamente si se levanta el boton hasta la pocision entera mas cercana
+        if (rightAutoMoving && transform.position.x < tempLimit && transform.position.x < limit.x)
+        {
+            
+            transform.eulerAngles = rotationRight;
+            transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+        }
+        if (rightAutoMoving && transform.position.x >tempLimit)
+        {
+            rightAutoMoving = false;
+            transform.position = new Vector3(tempLimit, transform.position.y, transform.position.z);
+        }
+
+        if (leftAutoMoving && transform.position.x > tempLimit && transform.position.x > -limit.x)
+        {
+
+            transform.eulerAngles = rotationLeft;
+            transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+        }
+        if (leftAutoMoving && transform.position.x < tempLimit)
+        {
+            leftAutoMoving = false;
+            transform.position = new Vector3(tempLimit, transform.position.y, transform.position.z);
+        }
+
     }
 
 
