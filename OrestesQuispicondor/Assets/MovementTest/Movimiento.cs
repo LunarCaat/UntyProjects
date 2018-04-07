@@ -24,6 +24,8 @@ public class Movimiento : MonoBehaviour {
     private bool upAutoMoving = false;
     private bool downAutoMoving = false;
     private float tempLimit;
+
+    private char lockedLetter = 'L';
     // Use this for initialization
     void Start () {
         Vector3 initialRotation = transform.rotation.eulerAngles;
@@ -101,26 +103,28 @@ public class Movimiento : MonoBehaviour {
         //}
 
 
-        if (Input.GetKey(KeyCode.A) && transform.position.x > -limit.x)
+        if (Input.GetKey(KeyCode.A) && transform.position.x > -limit.x && (lockedLetter == 'A' || lockedLetter == 'L'))
         {
+            lockedLetter = 'A';
             leftAutoMoving = false;
             transform.eulerAngles = rotationLeft;
             transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
         }
-        else if (Input.GetKeyUp(KeyCode.A))
+        else if (Input.GetKeyUp(KeyCode.A) && (lockedLetter == 'A' || lockedLetter == 'L'))
         {
             leftAutoMoving = true;
             tempLimit = Mathf.Floor(transform.position.x);
         }
 
 
-        if (Input.GetKey(KeyCode.D) && transform.position.x < limit.x)
+        if (Input.GetKey(KeyCode.D) && transform.position.x < limit.x && (lockedLetter == 'D'|| lockedLetter == 'L'))
         {
+            lockedLetter = 'D';
             rightAutoMoving = false;
             transform.eulerAngles = rotationRight;
             transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
         }
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(KeyCode.D) && (lockedLetter == 'D' || lockedLetter == 'L'))
         {
             rightAutoMoving = true;
             tempLimit = Mathf.Ceil(transform.position.x);
@@ -148,8 +152,11 @@ public class Movimiento : MonoBehaviour {
         }
         if (rightAutoMoving && transform.position.x >tempLimit)
         {
-            rightAutoMoving = false;
+            
             transform.position = new Vector3(tempLimit, transform.position.y, transform.position.z);
+            rightAutoMoving = false;
+            lockedLetter = 'L';
+            
         }
 
         if (leftAutoMoving && transform.position.x > tempLimit && transform.position.x > -limit.x)
@@ -160,8 +167,10 @@ public class Movimiento : MonoBehaviour {
         }
         if (leftAutoMoving && transform.position.x < tempLimit)
         {
-            leftAutoMoving = false;
+
             transform.position = new Vector3(tempLimit, transform.position.y, transform.position.z);
+            leftAutoMoving = false;
+            lockedLetter = 'L';
         }
 
     }
