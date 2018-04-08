@@ -18,13 +18,17 @@ public class Movimiento : MonoBehaviour {
     private Vector3 rotationLeft;
     private Vector3 rotationForward;
     private Vector3 rotationBack;
-
+    //[SerializeField]
     private bool rightAutoMoving=false;
+    //[SerializeField]
     private bool leftAutoMoving = false;
+    //[SerializeField]
     private bool upAutoMoving = false;
+    //[SerializeField]
     private bool downAutoMoving = false;
     private float tempLimit;
 
+    //[SerializeField]
     private char lockedLetter = 'L';
     // Use this for initialization
     void Start () {
@@ -110,6 +114,12 @@ public class Movimiento : MonoBehaviour {
             transform.eulerAngles = rotationLeft;
             transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
         }
+        else if (transform.position.x <= -limit.x)
+        {
+            transform.position = new Vector3(-limit.x, transform.position.y, transform.position.z);
+            leftAutoMoving = false;
+            lockedLetter = 'L';
+        }
         else if (Input.GetKeyUp(KeyCode.A) && (lockedLetter == 'A' || lockedLetter == 'L'))
         {
             leftAutoMoving = true;
@@ -124,6 +134,12 @@ public class Movimiento : MonoBehaviour {
             transform.eulerAngles = rotationRight;
             transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
         }
+        else if (transform.position.x >= limit.x)
+        {
+            transform.position = new Vector3(limit.x, transform.position.y, transform.position.z);
+            rightAutoMoving = false;
+            lockedLetter = 'L';
+        }
         else if (Input.GetKeyUp(KeyCode.D) && (lockedLetter == 'D' || lockedLetter == 'L'))
         {
             rightAutoMoving = true;
@@ -131,15 +147,43 @@ public class Movimiento : MonoBehaviour {
         }
 
 
-        if (Input.GetKey(KeyCode.W) && transform.position.z < limit.z)
+        if (Input.GetKey(KeyCode.W) && transform.position.z < limit.z && (lockedLetter == 'W' || lockedLetter == 'L'))
         {
+            lockedLetter = 'W';
+            upAutoMoving = false;
             transform.eulerAngles = rotationBack;
             transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
         }
-        if (Input.GetKey(KeyCode.S) && transform.position.z > -limit.z)
+        else if (transform.position.z >= limit.z)
         {
+            transform.position = new Vector3(transform.position.x, transform.position.y, limit.z);
+            upAutoMoving = false;
+            lockedLetter = 'L';
+        }
+        else if (Input.GetKeyUp(KeyCode.W) && (lockedLetter == 'W' || lockedLetter == 'L'))
+        {
+            upAutoMoving = true;
+            tempLimit = Mathf.Ceil(transform.position.z);
+        }
+
+
+        if (Input.GetKey(KeyCode.S) && transform.position.z > -limit.z && (lockedLetter == 'S' || lockedLetter == 'L'))
+        {
+            lockedLetter = 'S';
+            downAutoMoving = false;
             transform.eulerAngles = rotationForward;
             transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+        }
+        else if (transform.position.z <= -limit.z)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -limit.z);
+            downAutoMoving = false;
+            lockedLetter = 'L';
+        }
+        else if (Input.GetKeyUp(KeyCode.S) && (lockedLetter == 'S' || lockedLetter == 'L'))
+        {
+            downAutoMoving = true;
+            tempLimit = Mathf.Floor(transform.position.z);
         }
 
 
@@ -172,6 +216,38 @@ public class Movimiento : MonoBehaviour {
             leftAutoMoving = false;
             lockedLetter = 'L';
         }
+
+        if (upAutoMoving && transform.position.z < tempLimit && transform.position.z < limit.z)
+        {
+
+            transform.eulerAngles = rotationBack;
+            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
+        }
+        if (upAutoMoving && transform.position.z > tempLimit )
+        {
+
+            transform.position = new Vector3(transform.position.x, transform.position.y, tempLimit);
+            upAutoMoving = false;
+            lockedLetter = 'L';
+        }
+
+        if (downAutoMoving && transform.position.z > tempLimit && transform.position.z > -limit.z)
+        {
+
+            transform.eulerAngles = rotationForward;
+            transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+        }
+        if (downAutoMoving && transform.position.z < tempLimit)
+        {
+
+            transform.position = new Vector3(transform.position.x, transform.position.y, tempLimit);
+            downAutoMoving = false;
+            lockedLetter = 'L';
+        }
+
+
+
+
 
     }
 
