@@ -2022,7 +2022,7 @@ Prefab:
         type: 2}
       propertyPath: WinText
       value: 
-      objectReference: {fileID: 599090727}
+      objectReference: {fileID: 599090729}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89211ae63f4fb1747bb3952062015e4a, type: 2}
   m_IsPrefabParent: 0
