@@ -23,13 +23,13 @@ public class MovimientoRigidBody : MonoBehaviour {
     private Vector3 initialPos;
 
     private float tempLimit;
-    public GameObject WinText;
+    public Text WinText;
     private bool win = false;
     Rigidbody playerRB;
     // Use this for initialization
     void Start()
     {
-        WinText.SetActive(false);
+        WinText.gameObject.SetActive(false);
         Vector3 initialRotation = transform.rotation.eulerAngles;
         rotationRight = initialRotation + new Vector3(0, -90, 0);
         rotationLeft = initialRotation + new Vector3(0, 90, 0);
@@ -107,6 +107,6 @@ public class MovimientoRigidBody : MonoBehaviour {
     public void Congratulations()
     {
         win = true;
-        WinText.SetActive(true);
+        WinText.gameObject.SetActive(true);
     }
 }
