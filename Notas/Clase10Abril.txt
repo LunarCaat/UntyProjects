@@ -1,0 +1,7 @@
+Para limites geometricos se puede usar Quaternios(averiguar y probar otros metodos tambien).
+
+
+T GetComponent <T>(): where T is component, new(){
+}
+
+(Revisar templates)
