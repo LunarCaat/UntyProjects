@@ -61,58 +61,108 @@ public class Movimiento : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        ////Rotar usando deltaTime
-        ////transform.Rotate(new Vector3(angle, 0, 0)*Time.deltaTime);
+        moveByInput();
 
-        ////Mover usando deltaTime
-        //if (transform.position.x >= limit)
-        //{
-        //    speed = 0;
-        //    //Validacion de posicion
-        //    //Es importante para corregir imprecisiones de fisica y animacion
+        autoMoving();
+        
+    }
 
-        //    //Vector3 transformTemp = transform.position;
-        //    //transformTemp.x = limit;
-        //    //transform.position = transformTemp;
-        //    //Tambien puede ser(mas corto):
-        //    //transform.position = new Vector3(limit,transform.position.y,transform.position.z);
+    private void moveTowardsLeft(float movementSpeed)
+    {
+        moveTowards(movementSpeed, rotationLeft, Vector3.left);
+    }
+    private void moveTowardsRight(float movementSpeed)
+    {
+        moveTowards(movementSpeed, rotationRight, Vector3.right);
+    }
+    private void moveTowardsUp(float movementSpeed)
+    {
+        moveTowards(movementSpeed, rotationBack, Vector3.forward);
+    }
+    private void moveTowardsDown(float movementSpeed)
+    {
+        moveTowards(movementSpeed, rotationForward, Vector3.back);
+    }
 
-
-
-
-
-        //transform.Translate(direction.normalized * speed * Time.deltaTime);
-
-        //Vector3 currentMovement = Vector3.zero;
-        //if (transform.position.x < limit.x)
-        //{
-        //    currentMovement.x = direction.x * speed;
-        //}
-        //if (transform.position.y < limit.y)
-        //{
-        //    currentMovement.y = direction.y * speed;
-        //}
-        //if (transform.position.z < limit.z)
-        //{
-        //    currentMovement.z = direction.z * speed;
-        //}
-        //transform.Translate(currentMovement * Time.deltaTime);
+    private void moveTowards(float movementSpeed, Vector3 facingRotation, Vector3 translateDirection)
+    {
+        transform.eulerAngles = facingRotation;
+        transform.Translate(translateDirection * movementSpeed * Time.deltaTime, Space.World);
+    }
 
 
+    private void autoMoving(){
+        //Se mueve automaticamente si se levanta el boton hasta la pocision entera mas cercana
+        if (rightAutoMoving && transform.position.x < tempLimit && transform.position.x < limit.x)
+        {
+            
+            //transform.eulerAngles = rotationRight;
+            //transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+            moveTowardsRight(speed);
+        }
+        if (rightAutoMoving && transform.position.x >tempLimit)
+        {
+            
+            transform.position = new Vector3(tempLimit, transform.position.y, transform.position.z);
+            rightAutoMoving = false;
+            lockedLetter = 'L';
+            
+        }
 
+        if (leftAutoMoving && transform.position.x > tempLimit && transform.position.x > -limit.x)
+        {
 
-        //if (transform.position.x < limit.x)
-        //{
-        //    transform.translate(direction.normalized * speed * time.deltatime);
-        //}
+            //transform.eulerAngles = rotationLeft;
+            //transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+            moveTowardsLeft(speed);
+        }
+        if (leftAutoMoving && transform.position.x < tempLimit)
+        {
 
+            transform.position = new Vector3(tempLimit, transform.position.y, transform.position.z);
+            leftAutoMoving = false;
+            lockedLetter = 'L';
+        }
 
+        if (upAutoMoving && transform.position.z < tempLimit && transform.position.z < limit.z)
+        {
+
+            //transform.eulerAngles = rotationBack;
+            //transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
+            moveTowardsUp(speed);
+        }
+        if (upAutoMoving && transform.position.z > tempLimit )
+        {
+
+            transform.position = new Vector3(transform.position.x, transform.position.y, tempLimit);
+            upAutoMoving = false;
+            lockedLetter = 'L';
+        }
+
+        if (downAutoMoving && transform.position.z > tempLimit && transform.position.z > -limit.z)
+        {
+
+            //transform.eulerAngles = rotationForward;
+            //transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+            moveTowardsDown(speed);
+        }
+        if (downAutoMoving && transform.position.z < tempLimit)
+        {
+
+            transform.position = new Vector3(transform.position.x, transform.position.y, tempLimit);
+            downAutoMoving = false;
+            lockedLetter = 'L';
+        }
+    }
+    private void moveByInput()
+    {
         if (Input.GetKey(KeyCode.A) && transform.position.x > -limit.x && (lockedLetter == 'A' || lockedLetter == 'L'))
         {
             lockedLetter = 'A';
             leftAutoMoving = false;
-            transform.eulerAngles = rotationLeft;
-            transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+            //transform.eulerAngles = rotationLeft;
+            //transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+            moveTowardsLeft(speed);
         }
         else if (transform.position.x <= -limit.x)
         {
@@ -127,12 +177,13 @@ public class Movimiento : MonoBehaviour {
         }
 
 
-        if (Input.GetKey(KeyCode.D) && transform.position.x < limit.x && (lockedLetter == 'D'|| lockedLetter == 'L'))
+        if (Input.GetKey(KeyCode.D) && transform.position.x < limit.x && (lockedLetter == 'D' || lockedLetter == 'L'))
         {
             lockedLetter = 'D';
             rightAutoMoving = false;
-            transform.eulerAngles = rotationRight;
-            transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+            //transform.eulerAngles = rotationRight;
+            //transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+            moveTowardsRight(speed);
         }
         else if (transform.position.x >= limit.x)
         {
@@ -151,8 +202,9 @@ public class Movimiento : MonoBehaviour {
         {
             lockedLetter = 'W';
             upAutoMoving = false;
-            transform.eulerAngles = rotationBack;
-            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
+            //transform.eulerAngles = rotationBack;
+            //transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
+            moveTowardsUp(speed);
         }
         else if (transform.position.z >= limit.z)
         {
@@ -171,8 +223,9 @@ public class Movimiento : MonoBehaviour {
         {
             lockedLetter = 'S';
             downAutoMoving = false;
-            transform.eulerAngles = rotationForward;
-            transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+            //transform.eulerAngles = rotationForward;
+            //transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+            moveTowardsDown(speed);
         }
         else if (transform.position.z <= -limit.z)
         {
@@ -185,71 +238,5 @@ public class Movimiento : MonoBehaviour {
             downAutoMoving = true;
             tempLimit = Mathf.Floor(transform.position.z);
         }
-
-
-        //Se mueve automaticamente si se levanta el boton hasta la pocision entera mas cercana
-        if (rightAutoMoving && transform.position.x < tempLimit && transform.position.x < limit.x)
-        {
-            
-            transform.eulerAngles = rotationRight;
-            transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
-        }
-        if (rightAutoMoving && transform.position.x >tempLimit)
-        {
-            
-            transform.position = new Vector3(tempLimit, transform.position.y, transform.position.z);
-            rightAutoMoving = false;
-            lockedLetter = 'L';
-            
-        }
-
-        if (leftAutoMoving && transform.position.x > tempLimit && transform.position.x > -limit.x)
-        {
-
-            transform.eulerAngles = rotationLeft;
-            transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
-        }
-        if (leftAutoMoving && transform.position.x < tempLimit)
-        {
-
-            transform.position = new Vector3(tempLimit, transform.position.y, transform.position.z);
-            leftAutoMoving = false;
-            lockedLetter = 'L';
-        }
-
-        if (upAutoMoving && transform.position.z < tempLimit && transform.position.z < limit.z)
-        {
-
-            transform.eulerAngles = rotationBack;
-            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
-        }
-        if (upAutoMoving && transform.position.z > tempLimit )
-        {
-
-            transform.position = new Vector3(transform.position.x, transform.position.y, tempLimit);
-            upAutoMoving = false;
-            lockedLetter = 'L';
-        }
-
-        if (downAutoMoving && transform.position.z > tempLimit && transform.position.z > -limit.z)
-        {
-
-            transform.eulerAngles = rotationForward;
-            transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
-        }
-        if (downAutoMoving && transform.position.z < tempLimit)
-        {
-
-            transform.position = new Vector3(transform.position.x, transform.position.y, tempLimit);
-            downAutoMoving = false;
-            lockedLetter = 'L';
-        }
-
-
-
-
-
     }
-
-
 }
