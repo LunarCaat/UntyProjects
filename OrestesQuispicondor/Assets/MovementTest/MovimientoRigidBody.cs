@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovimientoRigidBody : MonoBehaviour {
     //public float angle = -35;
@@ -22,11 +23,13 @@ public class MovimientoRigidBody : MonoBehaviour {
     private Vector3 initialPos;
 
     private float tempLimit;
-
+    public GameObject WinText;
+    private bool win = false;
     Rigidbody playerRB;
     // Use this for initialization
     void Start()
     {
+        WinText.SetActive(false);
         Vector3 initialRotation = transform.rotation.eulerAngles;
         rotationRight = initialRotation + new Vector3(0, -90, 0);
         rotationLeft = initialRotation + new Vector3(0, 90, 0);
@@ -36,7 +39,7 @@ public class MovimientoRigidBody : MonoBehaviour {
         //transform.position = new Vector3(1,0,0);
         initialPos = transform.position;
         playerRB = GetComponent<Rigidbody>();
-
+        tempQuaternion = new Quaternion();
         //Se anade una pocision especifica:
         //transform.position += new Vector3(1,0,0);
         //Tambien se puede hacer asi:
@@ -56,59 +59,22 @@ public class MovimientoRigidBody : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        ////Rotar usando deltaTime
-        ////transform.Rotate(new Vector3(angle, 0, 0)*Time.deltaTime);
-
-        ////Mover usando deltaTime
-        //if (transform.position.x >= limit)
-        //{
-        //    speed = 0;
-        //    //Validacion de posicion
-        //    //Es importante para corregir imprecisiones de fisica y animacion
-
-        //    //Vector3 transformTemp = transform.position;
-        //    //transformTemp.x = limit;
-        //    //transform.position = transformTemp;
-        //    //Tambien puede ser(mas corto):
-        //    //transform.position = new Vector3(limit,transform.position.y,transform.position.z);
-
-
-
-
-
-        //transform.Translate(direction.normalized * speed * Time.deltaTime);
-
-        //Vector3 currentMovement = Vector3.zero;
-        //if (transform.position.x < limit.x)
-        //{
-        //    currentMovement.x = direction.x * speed;
-        //}
-        //if (transform.position.y < limit.y)
-        //{
-        //    currentMovement.y = direction.y * speed;
-        //}
-        //if (transform.position.z < limit.z)
-        //{
-        //    currentMovement.z = direction.z * speed;
-        //}
-        //transform.Translate(currentMovement * Time.deltaTime);
-
-
-
-
-        //if (transform.position.x < limit.x)
-        //{
-        //    transform.translate(direction.normalized * speed * time.deltatime);
-        //}
-
-
+        if (!win)
+        {
+            moveByInput();
+        }
+    }
+    public void moveByInput()
+    {
         if (Input.GetKey(KeyCode.A) && transform.position.x > -limit.x)
         {
-
+            Debug.Log(win);
+            
             //transform.eulerAngles = rotationLeft;
             tempQuaternion.eulerAngles = rotationLeft;
+            Debug.Log(tempQuaternion);
             playerRB.MoveRotation(tempQuaternion);
-            playerRB.MovePosition(transform.position+ (Vector3.left * speed * Time.deltaTime));
+            playerRB.MovePosition(transform.position + (Vector3.left * speed * Time.deltaTime));
         }
         if (Input.GetKey(KeyCode.D) && transform.position.x < limit.x)
         {
@@ -131,15 +97,16 @@ public class MovimientoRigidBody : MonoBehaviour {
             playerRB.MoveRotation(tempQuaternion);
             playerRB.MovePosition(transform.position + (Vector3.back * speed * Time.deltaTime));
         }
+    }
+    public void ResetPosition()
+    {
 
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
             transform.position = initialPos;
-        }
-        //if (Input.GetKeyUp(KeyCode.D))
-        //{
-        //    tempLimit= Mathf.Ceil(transform.position.x);
-        //}
+
+    }
+    public void Congratulations()
+    {
+        win = true;
+        WinText.SetActive(true);
     }
 }
