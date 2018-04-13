@@ -1,0 +1,15 @@
+Cuantas luces se debe maximo en una escena?
+En mobil lo mas recomendable es 1 dinamica a lo mas.
+En pc/laptop se puede tener mas pero se debe tener
+en cuenta que por el juego puede haber mas de las que
+se espera. Ej: Se puede tener luces de antorchas de
+fuego, truenos y encima enemigos con luces en los ojos.
+Para prototipado no es necesario limitarse.
+
+Acordar que cada script tiene su ciclo/thread,
+por lo tanto aprovecharlo y hacer lo suguiente:
+-Mover logica de Enumerator para hacerlo en base a lo
+que aprendimos en el redArea.
+
+Kinematico en rigidbody significa que no va a ser
+afectado por fuerzas fisicas.

@@ -68,11 +68,11 @@ public class MovimientoRigidBody : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.A) && transform.position.x > -limit.x)
         {
-            Debug.Log(win);
+            //Debug.Log(win);
             
             //transform.eulerAngles = rotationLeft;
             tempQuaternion.eulerAngles = rotationLeft;
-            Debug.Log(tempQuaternion);
+            //Debug.Log(tempQuaternion);
             playerRB.MoveRotation(tempQuaternion);
             playerRB.MovePosition(transform.position + (Vector3.left * speed * Time.deltaTime));
         }
