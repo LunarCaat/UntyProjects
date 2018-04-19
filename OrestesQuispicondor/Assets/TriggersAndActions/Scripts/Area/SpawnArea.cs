@@ -15,7 +15,7 @@ public class SpawnArea : MonoBehaviour {
     private float timer = 0;
 
     void Start() {
-        lightIndicator = lightBox.Find("Point Light").GetComponent<Light>();
+        lightIndicator = lightBox.Find("Point light").GetComponent<Light>();
     }
 
 

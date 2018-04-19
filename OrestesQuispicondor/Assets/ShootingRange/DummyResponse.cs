@@ -19,6 +19,7 @@ public class DummyResponse : MonoBehaviour {
     {
         if (other.CompareTag("PlayerBullet"))
         {
+            GetComponent<AudioSource>().PlayOneShot(hitSound);
             Destroy(other.gameObject);
             ShootingRangeControl.score++;
             Debug.Log("Hit!");

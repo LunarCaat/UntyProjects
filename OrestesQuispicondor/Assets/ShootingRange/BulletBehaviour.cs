@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour {
 	public float speed=10;
-
-	void Start(){
-        Destroy(gameObject, 2f);
+    public float lifeSpan = 3;
+    void Start(){
+        Destroy(gameObject, lifeSpan);
 	}
 
 	// Update is called once per frame
