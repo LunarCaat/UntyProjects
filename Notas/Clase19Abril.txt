@@ -1,0 +1,3 @@
+Para que gitignore incluya la carpeta de assets
+en un projecto nuevo se puede crear un script cualquiera
+o la misma primera escena.
