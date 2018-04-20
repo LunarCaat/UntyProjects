@@ -8,3 +8,9 @@ para este.
 
 En 2D cuando se crea el collider, para su dimension
 toma en cuenta la forma del mismo sprite.
+
+
+Ir averiguando que el triangulo rote apartir del mouse.
+Ir averiguando lo de la entrada de mouse.
+
+Comenzar de nuevo proyecto de Touhou pero ahora en 2D
