@@ -1,3 +1,10 @@
 Para que gitignore incluya la carpeta de assets
 en un projecto nuevo se puede crear un script cualquiera
 o la misma primera escena.
+
+Al crear un sprite por defecto en assets como cuadrado
+,hexagono o otro, Unity esta creando un nuevo archivo
+para este.
+
+En 2D cuando se crea el collider, para su dimension
+toma en cuenta la forma del mismo sprite.
