@@ -12,6 +12,7 @@ public class TopDownMovement : MonoBehaviour {
     int colorIndex =0;
 
     public SpriteRenderer spriteRendered;
+    public Transform sightDirection;
 
     struct Axis
     {
@@ -41,16 +42,31 @@ public class TopDownMovement : MonoBehaviour {
         //transform.Translate((Vector3.right* Input.GetAxis("Horizontal")+ Vector3.forward * Input.GetAxis("Vertical")) * speed *Time.deltaTime);
 
         transform.Translate((Vector3.right * GetAxis("Horizontal") + Vector3.up * GetAxis("Vertical")) * speed * Time.deltaTime,Space.World);
-        transform.Rotate(Vector3.back * GetAxis("Arrow_H") * angleVelocity*Time.deltaTime);
+        //sightDirection.Rotate(Vector3.back * GetAxis("Arrow_H") * angleVelocity*Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.E))
+
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Debug.DrawLine(transform.position,mouseWorldPos,Color.red);
+        mouseWorldPos.z = 0;
+        transform.up = (mouseWorldPos - transform.position).normalized;
+
+        //sightDirection.Rotate(Vector3.back * GetAxis("Arrow_H") * angleVelocity * Time.deltaTime);
+
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    MoveColor();
+        //    Debug.Log(colorIndex);
+
+        //}
+        float scrollWheelValue= Input.GetAxis("Mouse ScrollWheel");
+        if (scrollWheelValue!=0)
         {
-            MoveColor();
+            MoveColor(scrollWheelValue);
             Debug.Log(colorIndex);
 
         }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
@@ -58,14 +74,42 @@ public class TopDownMovement : MonoBehaviour {
     }
     void Shoot()
     {
-        SpriteRenderer tempRenderer= Instantiate(bullet, transform.Find("Cannon").position, transform.rotation).GetComponent<SpriteRenderer>();
+        SpriteRenderer tempRenderer= Instantiate(bullet, sightDirection.Find("Cannon").position, sightDirection.rotation).GetComponent<SpriteRenderer>();
         tempRenderer.color= spriteRendered.color;
         Destroy(tempRenderer,2);
     }
 
-    void MoveColor()
+    void MoveColor(float moveValue)
     {
-        colorIndex = (colorIndex >= colors.Count-1) ? 0 : colorIndex + 1;
+        moveValue *= 10;
+        //int tempValue = colorIndex+(int)moveValue;
+        for (int i=0;i<Mathf.Abs(moveValue);i++)
+        {
+            colorIndex += 1 * (int)Mathf.Sign(moveValue);
+            if (colorIndex >= colors.Count)
+            {
+                colorIndex = 0;
+            } else if (colorIndex < 0)
+            {
+                colorIndex = colors.Count - 1;
+            }
+        }
+
+        //colorIndex += (int)moveValue;
+        //bool negative = false;
+        //if (Mathf.Sign(moveValue) > 0) negative = true;
+        //colorIndex = colorIndex % colors.Count;
+
+        /*if(tempValue>= colors.Count)
+        {
+            colorIndex = 0;
+        }else if (tempValue < 0)
+        {
+            colorIndex = colors.Count - 1;
+        }*/
+
+
+        //colorIndex = (colorIndex >= colors.Count-1) ? 0 : colorIndex + 1;
         spriteRendered.color = colors[colorIndex];
 
     }

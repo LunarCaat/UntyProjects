@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour {
     public float speed=1;
-    public SpriteRenderer spriteRendered;
+    private SpriteRenderer spriteRendered;
     
     // Use this for initialization
     void Start () {
-		
+        spriteRendered = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -18,16 +18,19 @@ public class BulletBehaviour : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Block"))
+        SpriteRenderer otherRender = other.gameObject.GetComponent<SpriteRenderer>();
+        if (otherRender != null&& other.CompareTag("Block"))
         {
-            //other.gameObject.GetComponent<SpriteRenderer>().color = spriteRendered.color;
-            //other.gameObject.GetComponent<Collider2D>().enabled = false;
-            ChangeColor(other);
-            Destroy(other.gameObject,0.5f);
+            int targetAmmount= (otherRender.color==spriteRendered.color)?5:2;
+            other.GetComponent<BlockEntitity>().DecreaseLife(targetAmmount);
+            //Destroy(other.gameObject);
+            Destroy(gameObject);
         }
+
+        
     }
 
-    void ChangeColor(Collider2D other)
+    void ChangeColor(Collider2D other, Color colorToChange)
     {
         other.gameObject.GetComponent<SpriteRenderer>().color = spriteRendered.color;
         other.gameObject.GetComponent<Collider2D>().enabled = false;
