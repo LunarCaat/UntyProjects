@@ -10,9 +10,14 @@ public class TopDownMovement : MonoBehaviour {
 
     public List<Color> colors = new List<Color>();
     int colorIndex =0;
+    public int ColorIndex { get { return colorIndex; } }
+
 
     public SpriteRenderer spriteRendered;
     public Transform sightDirection;
+    public Transform sightObject;
+    public LineRenderer sightLine;
+
 
     struct Axis
     {
@@ -30,25 +35,40 @@ public class TopDownMovement : MonoBehaviour {
     List<Axis> axisList = new List<Axis>();
 	// Use this for initialization
 	void Start () {
-
+        Cursor.visible = false;
         spriteRendered.color = colors[colorIndex];
         axisList.Add(new Axis("Horizontal", KeyCode.A, KeyCode.D));
         axisList.Add(new Axis("Vertical", KeyCode.S, KeyCode.W));
         axisList.Add(new Axis("Arrow_H", KeyCode.LeftArrow, KeyCode.RightArrow));
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         //transform.Translate((Vector3.right* Input.GetAxis("Horizontal")+ Vector3.forward * Input.GetAxis("Vertical")) * speed *Time.deltaTime);
 
-        transform.Translate((Vector3.right * GetAxis("Horizontal") + Vector3.up * GetAxis("Vertical")) * speed * Time.deltaTime,Space.World);
+        transform.Translate((Vector3.right * GetAxis("Horizontal") + Vector3.up * GetAxis("Vertical")) * speed * Time.deltaTime, Space.World);
         //sightDirection.Rotate(Vector3.back * GetAxis("Arrow_H") * angleVelocity*Time.deltaTime);
 
 
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.DrawLine(transform.position,mouseWorldPos,Color.red);
+        Debug.DrawLine(transform.position, mouseWorldPos, Color.red);
+
+
         mouseWorldPos.z = 0;
         transform.up = (mouseWorldPos - transform.position).normalized;
+
+        //if (Vector3.Distance(mouseWorldPos,transform.position) >= 1)
+        //{
+        //    sightObject.position = mouseWorldPos;
+        //}
+        //else
+        //{
+        //    sightObject.position = transform.position + sightDirection.up;
+        //}
+        sightObject.position = (Vector3.Distance(mouseWorldPos, transform.position) >= 1) ? mouseWorldPos : transform.position + sightDirection.up;
+
+        sightLine.SetPositions(new Vector3[]{ transform.position, (transform.position+sightDirection.up*3)});
+        
 
         //sightDirection.Rotate(Vector3.back * GetAxis("Arrow_H") * angleVelocity * Time.deltaTime);
 
