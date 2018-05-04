@@ -12,7 +12,7 @@ public class TopDownMovement : MonoBehaviour {
     int colorIndex =0;
     public int ColorIndex { get { return colorIndex; } }
 
-
+    Vector3 mouseWorldPos;
     public SpriteRenderer spriteRendered;
     public Transform sightDirection;
     public Transform sightObject;
@@ -50,7 +50,7 @@ public class TopDownMovement : MonoBehaviour {
         //sightDirection.Rotate(Vector3.back * GetAxis("Arrow_H") * angleVelocity*Time.deltaTime);
 
 
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
 
 
@@ -94,12 +94,20 @@ public class TopDownMovement : MonoBehaviour {
         }
 
     }
+    void LateUpdate()
+    {
+        sightObject.position = (Vector3.Distance(mouseWorldPos, transform.position) >= 1) ? mouseWorldPos : transform.position + sightDirection.up;
+    }
+
     void Shoot()
     {
         Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition).ToString());
         SpriteRenderer tempRenderer= Instantiate(bullet, sightDirection.Find("Cannon").position, sightDirection.rotation).GetComponent<SpriteRenderer>();
         tempRenderer.color= spriteRendered.color;
         Destroy(tempRenderer,2);
+        TopDownCamMovement camera= Camera.main.GetComponent<TopDownCamMovement>();
+        camera.speed = 25;
+        camera.impulseDirection = sightDirection.up;
     }
 
     void MoveColor(float moveValue)

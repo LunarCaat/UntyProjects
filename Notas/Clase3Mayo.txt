@@ -1,0 +1,24 @@
+El mov de camara se pone en el lateupdate para asegurase que
+todo ya se movio.
+
+Ver teoria de scrolling:
+https://www.gamasutra.com/blogs/ItayKeren/20150511/243083/Scroll_Back_The_Theory_and_Practice_of_Cameras_in_SideScrollers.php
+
+Para hacer pixelart:
+www.piskelapp.com
+
+2 formas de usar tiles:
+1. Con la opcion tile
+Unity Manual 9-slicing
+2. con el unity tilemap/ Tile pallete:
+Unity Tiel map Documentation
+COn esta opcion se puede poner el sorting layer
+para por ejemplo poner cosas donde pasas por debajo.
+
+Lo unico que faltaria es ponerle limites de movimiento.
+
+Para el proyecto del modulo sera un topdown o un plataformer.
+
+Los tiles pueden ayudar para orientar al jugador.
+Ejemplo Si el jugador va a saltar un abismo se puede poner
+9 tiles para orientar al jugador.

@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5463929e43047be4284ac2374f140638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 10
+  lifePoints: 15
 --- !u!1 &252886762
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5463929e43047be4284ac2374f140638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 10
+  lifePoints: 15
 --- !u!1001 &626208146
 Prefab:
   m_ObjectHideFlags: 0
@@ -435,6 +435,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8911bf69983933429e2485dfce76a19, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &637896240 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4643033902844056, guid: a8911bf69983933429e2485dfce76a19,
+    type: 2}
+  m_PrefabInternal: {fileID: 626208146}
 --- !u!1 &686901754
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +451,7 @@ GameObject:
   - component: {fileID: 686901757}
   - component: {fileID: 686901756}
   - component: {fileID: 686901755}
+  - component: {fileID: 686901759}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -516,6 +522,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &686901759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 686901754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b01be53aa4ebfa419f5391eb13ffa90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 637896240}
+  targetColor: {r: 0.30882353, g: 0.020436851, b: 0.3008681, a: 1}
+  distance: 2
+  maxDistanceDelta: 7
 --- !u!1 &948877452
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5463929e43047be4284ac2374f140638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 10
+  lifePoints: 15
 --- !u!1 &1028993854
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5463929e43047be4284ac2374f140638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 10
+  lifePoints: 15
 --- !u!1 &1037285352
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5463929e43047be4284ac2374f140638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 10
+  lifePoints: 15
 --- !u!1 &1078154264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,7 +1111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5463929e43047be4284ac2374f140638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 10
+  lifePoints: 15
 --- !u!1 &1344870836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,7 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5463929e43047be4284ac2374f140638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 10
+  lifePoints: 15
 --- !u!1 &1491446570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,7 +1415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5463929e43047be4284ac2374f140638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 10
+  lifePoints: 15
 --- !u!1 &1747216806
 GameObject:
   m_ObjectHideFlags: 0
