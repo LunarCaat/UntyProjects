@@ -51,11 +51,12 @@ public class TopDownMovement : MonoBehaviour {
 
 
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+
+
+        mouseWorldPos.z = transform.position.z;
         Debug.DrawLine(transform.position, mouseWorldPos, Color.red);
-
-
-        mouseWorldPos.z = 0;
-        transform.up = (mouseWorldPos - transform.position).normalized;
+        //transform.up = (mouseWorldPos - transform.position).normalized;
 
         //if (Vector3.Distance(mouseWorldPos,transform.position) >= 1)
         //{
@@ -65,6 +66,7 @@ public class TopDownMovement : MonoBehaviour {
         //{
         //    sightObject.position = transform.position + sightDirection.up;
         //}
+        sightDirection.up = (mouseWorldPos - transform.position).normalized;
         sightObject.position = (Vector3.Distance(mouseWorldPos, transform.position) >= 1) ? mouseWorldPos : transform.position + sightDirection.up;
 
         sightLine.SetPositions(new Vector3[]{ transform.position, (transform.position+sightDirection.up*3)});
@@ -94,6 +96,7 @@ public class TopDownMovement : MonoBehaviour {
     }
     void Shoot()
     {
+        Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition).ToString());
         SpriteRenderer tempRenderer= Instantiate(bullet, sightDirection.Find("Cannon").position, sightDirection.rotation).GetComponent<SpriteRenderer>();
         tempRenderer.color= spriteRendered.color;
         Destroy(tempRenderer,2);
