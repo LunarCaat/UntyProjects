@@ -11,13 +11,20 @@ public class TopDownCamMovement : MonoBehaviour {
     public float maxDistanceDelta = 1;
 
     public float speed = 0;
-     float deaccel = 0.5f;
+     float deaccel = 45;
 
     public Vector3 impulseDirection;
 	// Use this for initialization
 	void Start () {
         targetScript = targetObject.GetComponent<TopDownMovement>();
 
+    }
+    void Update()
+    {
+        if (speed != 0)
+        {
+            speed = Mathf.MoveTowards(speed, 0, deaccel * Time.deltaTime);
+        }
     }
 	
 	// Update is called once per frame
@@ -29,7 +36,7 @@ public class TopDownCamMovement : MonoBehaviour {
         float currentDistance = Vector3.Distance(currentCamPos,targetCamPos);
 
         transform.Translate(impulseDirection* speed*Time.deltaTime);
-
+        //Debug.Log(speed);
         transform.position = Vector3.MoveTowards(transform.position,targetCamPos, maxDistanceDelta * currentDistance* Time.deltaTime);
 	}
 
