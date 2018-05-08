@@ -537,6 +537,8 @@ MonoBehaviour:
   targetColor: {r: 0.30882353, g: 0.020436851, b: 0.3008681, a: 1}
   distance: 2
   maxDistanceDelta: 7
+  speed: 0
+  impulseDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &948877452
 GameObject:
   m_ObjectHideFlags: 0
