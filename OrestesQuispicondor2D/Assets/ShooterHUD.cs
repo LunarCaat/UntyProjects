@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ShooterHUD : MonoBehaviour {
 
-    public TopDownMovement player;
+    public TopDownMovementWithRigidBody player;
     Text debugText;
     public float spacing =75;
     Transform collection;

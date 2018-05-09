@@ -9,7 +9,8 @@ public class BulletBehaviour : MonoBehaviour {
     // Use this for initialization
     void Start () {
         spriteRendered = GetComponent<SpriteRenderer>();
-	}
+        Destroy(gameObject,1f);
+    }
 	
 	// Update is called once per frame
 	void Update () {

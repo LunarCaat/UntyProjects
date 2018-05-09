@@ -17,7 +17,7 @@ public class TopDownMovement : MonoBehaviour {
     public Transform sightDirection;
     public Transform sightObject;
     public LineRenderer sightLine;
-
+    float timer = 0;
 
     struct Axis
     {
@@ -88,15 +88,22 @@ public class TopDownMovement : MonoBehaviour {
 
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            Shoot();
+            timer += Time.deltaTime;
+            if (timer >= 1)
+            {
+                Shoot();
+                timer = 0;
+            }
+            
         }
 
     }
     void LateUpdate()
     {
         sightObject.position = (Vector3.Distance(mouseWorldPos, transform.position) >= 1) ? mouseWorldPos : transform.position + sightDirection.up;
+
     }
 
     void Shoot()
@@ -185,11 +192,47 @@ public class TopDownMovement : MonoBehaviour {
         return 0;
     }
 
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.CompareTag("Block"))
+    //    {
+    //        Debug.Log("BlockCollision");
+    //    }
+    //}
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject wall = collision.gameObject;
+        if (wall.CompareTag("Wall"))
+        {
+            //Debug.Log("Wall!");
+            Vector3 dir;
+            if (GetAxis("Horizontal")!=0)
+                dir = (wall.transform.position - transform.position).x* Vector3.right;
+            else
+            {
+                dir = (wall.transform.position - transform.position).y * Vector3.up;
+            }
+            Debug.Log(dir);
+            transform.position -= dir*0.5f;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Block"))
+        
+        if (other.CompareTag("Wall"))
         {
-            Debug.Log("BlockCollision");
+            //Debug.Log("Wall!");
+            Vector3 dir;
+            if (GetAxis("Horizontal") != 0)
+                dir = (other.transform.position - transform.position).x * Vector3.right;
+            else
+            {
+                dir = (other.transform.position - transform.position).y * Vector3.up;
+            }
+            Debug.Log(dir);
+            transform.position -= dir * 0.5f;
         }
     }
 }

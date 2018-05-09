@@ -1,0 +1,9 @@
+Acuerdate de poner BoxCollider2D en los proyectos 2D y no BoxCollider
+
+RigidBody consume muchos recursos. Para pequenos juegos o con procesadores
+no tan potentes, quizas no es buena idea.
+
+GameDevMarket
+sparklinlabs
+
+https://github.com/sparklinlabs/superpowers-asset-packs/tree/master/ninja-adventure/background-elements

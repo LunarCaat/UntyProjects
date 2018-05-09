@@ -5,7 +5,7 @@ using UnityEngine;
 public class TopDownCamMovement : MonoBehaviour {
 
     public Transform targetObject;
-    TopDownMovement targetScript;
+    TopDownMovementWithRigidBody targetScript;
     public Color targetColor;
     public float distance = 1;
     public float maxDistanceDelta = 1;
@@ -16,7 +16,7 @@ public class TopDownCamMovement : MonoBehaviour {
     public Vector3 impulseDirection;
 	// Use this for initialization
 	void Start () {
-        targetScript = targetObject.GetComponent<TopDownMovement>();
+        targetScript = targetObject.GetComponent<TopDownMovementWithRigidBody>();
 
     }
     void Update()
