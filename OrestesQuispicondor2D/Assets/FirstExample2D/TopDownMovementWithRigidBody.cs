@@ -20,6 +20,9 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
     float timer = 0;
     public Rigidbody2D Rigidbody2D;
     Vector3 velocity;
+    public Animator animator;
+
+
     struct Axis
     {
         public string name;
@@ -55,8 +58,16 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
         velocity.y = GetAxis("Vertical") * speed;
 
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
 
+        if (GetAxis("Horizontal")==0 && GetAxis("Vertical")==0)
+        {
+            
+                animator.SetBool("Walking", false);
+        }
+        else 
+        {
+            animator.SetBool("Walking", true);
+        }
 
         mouseWorldPos.z = transform.position.z;
         Debug.DrawLine(transform.position, mouseWorldPos, Color.red);
@@ -74,8 +85,11 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
         sightObject.position = (Vector3.Distance(mouseWorldPos, transform.position) >= 1) ? mouseWorldPos : transform.position + sightDirection.up;
 
         sightLine.SetPositions(new Vector3[]{ transform.position, (transform.position+sightDirection.up*3)});
-        
 
+        int facing= (Mathf.CeilToInt((sightDirection.rotation.eulerAngles.z+45)/90))%4;
+        Debug.Log(facing);
+        
+        animator.SetInteger("Facing",facing);
         //sightDirection.Rotate(Vector3.back * GetAxis("Arrow_H") * angleVelocity * Time.deltaTime);
 
         //if (Input.GetKeyDown(KeyCode.E))
@@ -88,7 +102,7 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
         if (scrollWheelValue!=0)
         {
             MoveColor(scrollWheelValue);
-            Debug.Log(colorIndex);
+            //Debug.Log(colorIndex);
 
         }
 
@@ -116,7 +130,7 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
 
     void Shoot()
     {
-        Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition).ToString());
+        //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition).ToString());
         SpriteRenderer tempRenderer= Instantiate(bullet, sightDirection.Find("Cannon").position, sightDirection.rotation).GetComponent<SpriteRenderer>();
         tempRenderer.color= spriteRendered.color;
         Destroy(tempRenderer,2);
