@@ -21,7 +21,8 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
     public Rigidbody2D Rigidbody2D;
     Vector3 velocity;
     public Animator animator;
-
+    public float shootRate=0.1f;
+    private bool isShooting=false;
 
     struct Axis
     {
@@ -106,16 +107,22 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
 
         }
 
-        if (Input.GetMouseButton(0))
-        {
-            timer += Time.deltaTime;
-            if (timer >= 0.1f)
-            {
-                Shoot();
-                timer = 0;
-            }
-
+        if (Input.GetMouseButton(0) && !isShooting) {
+            isShooting = true;
+            StartCoroutine("ContinuousShoot");
         }
+
+        //if (Input.GetMouseButton(0))
+        //{
+        //    timer += Time.deltaTime;
+        //    if (timer >= 0.1f)
+        //    {
+        //        Shoot();
+        //        timer = 0;
+        //    }
+
+            //}
+            //isShooting = Input.GetMouseButton(0);
 
     }
     void LateUpdate()
@@ -131,13 +138,37 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
     void Shoot()
     {
         //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition).ToString());
-        SpriteRenderer tempRenderer= Instantiate(bullet, sightDirection.Find("Cannon").position, sightDirection.rotation).GetComponent<SpriteRenderer>();
+        //SpriteRenderer tempRenderer= Instantiate(bullet, sightDirection.Find("Cannon").position, sightDirection.rotation).GetComponent<SpriteRenderer>();
+
+        GameObject tempObj=ObjectPoolerScript.current.GetPooledObject();
+        tempObj.transform.position = sightDirection.Find("Cannon").position;
+        tempObj.transform.rotation = sightDirection.rotation;
+        
+
+
+        SpriteRenderer tempRenderer = tempObj.GetComponent<SpriteRenderer>();
         tempRenderer.color= spriteRendered.color;
-        Destroy(tempRenderer,2);
+        //Destroy(tempRenderer,2);
         TopDownCamMovement camera= Camera.main.GetComponent<TopDownCamMovement>();
         camera.speed = 25;
         camera.impulseDirection = sightDirection.up;
+
+        tempObj.SetActive(true);
+
+
+
     }
+
+    IEnumerator ContinuousShoot()
+    {
+        while(Input.GetMouseButton(0))
+        {
+            Shoot();
+            yield return new WaitForSeconds(shootRate);
+        }
+        isShooting = false;
+    }
+
 
     void MoveColor(float moveValue)
     {

@@ -5,17 +5,25 @@ using UnityEngine;
 public class BulletBehaviour : MonoBehaviour {
     public float speed=1;
     private SpriteRenderer spriteRendered;
+    private float timer = 0;
     
     // Use this for initialization
     void Start () {
         spriteRendered = GetComponent<SpriteRenderer>();
-        Destroy(gameObject,1f);
+        //Destroy(gameObject,1f);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        transform.Translate(Vector3.up*speed*Time.deltaTime);
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        timer += Time.deltaTime;
+        if (timer >= 1f)
+        {
+            DestroyThis();
+            
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -25,7 +33,7 @@ public class BulletBehaviour : MonoBehaviour {
             int targetAmmount= (otherRender.color==spriteRendered.color)?5:2;
             other.GetComponent<BlockEntitity>().DecreaseLife(targetAmmount);
             //Destroy(other.gameObject);
-            Destroy(gameObject);
+            DestroyThis();
         }
 
         
@@ -36,4 +44,17 @@ public class BulletBehaviour : MonoBehaviour {
         other.gameObject.GetComponent<SpriteRenderer>().color = spriteRendered.color;
         other.gameObject.GetComponent<Collider2D>().enabled = false;
     }
+
+
+    void OnEnable()
+    {
+        //nothing for now
+    }
+
+    void DestroyThis()
+    {
+        gameObject.SetActive(false);
+        timer = 0;
+    }
+
 }

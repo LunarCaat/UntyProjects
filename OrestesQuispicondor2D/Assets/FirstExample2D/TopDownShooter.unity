@@ -11379,6 +11379,11 @@ Prefab:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1670737072}
+    - target: {fileID: 114241920059794372, guid: 59b8273d1c32479429ab513e04a33ddd,
+        type: 2}
+      propertyPath: shootRate
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59b8273d1c32479429ab513e04a33ddd, type: 2}
   m_IsPrefabParent: 0
@@ -12911,6 +12916,50 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b248220cc58b9c3458bdffe0d483cc18, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2034165966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2034165968}
+  - component: {fileID: 2034165967}
+  m_Layer: 0
+  m_Name: ObjectPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2034165967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2034165966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69467571c5694d14f8e8b9917e16a8b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject: {fileID: 1540791847068296, guid: cd732fc8a3f9b1046b89ec9f60c0e399,
+    type: 2}
+  pooledAmmount: 20
+  willGrow: 1
+--- !u!4 &2034165968
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2034165966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.1454144, y: -1.2295078, z: 0.16653915}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2129641873
 GameObject:
   m_ObjectHideFlags: 0
