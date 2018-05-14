@@ -173,16 +173,17 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
     void MoveColor(float moveValue)
     {
         moveValue *= 10;
+        int colorsCount= colors.Count;
         //int tempValue = colorIndex+(int)moveValue;
         for (int i=0;i<Mathf.Abs(moveValue);i++)
         {
             colorIndex += 1 * (int)Mathf.Sign(moveValue);
-            if (colorIndex >= colors.Count)
+            if (colorIndex >= colorsCount)
             {
                 colorIndex = 0;
             } else if (colorIndex < 0)
             {
-                colorIndex = colors.Count - 1;
+                colorIndex = colorsCount - 1;
             }
         }
 
