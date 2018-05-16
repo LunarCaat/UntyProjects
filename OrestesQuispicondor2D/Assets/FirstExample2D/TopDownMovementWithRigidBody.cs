@@ -29,6 +29,10 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
 
 
     private float canDamageAgaintimer =0f;
+    private bool flashToggle=false;
+
+    public float flashSpeed=0.1f;
+    public SpriteRenderer characterSprite;
 
     struct Axis
     {
@@ -118,15 +122,15 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
             StartCoroutine("ContinuousShoot");
         }
 
-        if (!canGetDamaged)
-        {
-           canDamageAgaintimer -= Time.deltaTime;
-           if (canDamageAgaintimer <  0f)
-           {
-               canGetDamaged=true;
-           }
+        //if (!canGetDamaged)
+        //{
+        //   canDamageAgaintimer -= Time.deltaTime;
+        //   if (canDamageAgaintimer <  0f)
+        //   {
+        //       canGetDamaged=true;
+        //   }
 
-        }
+        //}
             //isShooting = Input.GetMouseButton(0);
 
     }
@@ -173,7 +177,18 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
         }
         isShooting = false;
     }
-
+    IEnumerator Flash(float x)
+    {
+        canGetDamaged = false;
+        for (int i = 0; i < 8; i++)
+        {
+            characterSprite.enabled = false;
+            yield return new WaitForSeconds(x);
+            characterSprite.enabled = true;
+            yield return new WaitForSeconds(x);
+        }
+        canGetDamaged = true;
+    }
 
     void MoveColor(float moveValue)
     {
@@ -263,9 +278,9 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
         canGetDamaged=false;
         canDamageAgaintimer =10f;
     }
-    public void damagePlayer(int damage){
-        if(canGetDamaged){
-            canDamageAgainLater();
+    public void damagePlayer(int damage) {
+        if (canGetDamaged) {
+            StartCoroutine(Flash(flashSpeed));
             health-=damage;
             
         }

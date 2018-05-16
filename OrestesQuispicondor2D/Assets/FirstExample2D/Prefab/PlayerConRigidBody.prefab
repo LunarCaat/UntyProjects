@@ -253,6 +253,9 @@ MonoBehaviour:
   animator: {fileID: 95384882777243628}
   shootRate: 0.1
   health: 12
+  canGetDamaged: 1
+  flashSpeed: 0.1
+  characterSprite: {fileID: 212665347249625938}
 --- !u!120 &120240839392141470
 LineRenderer:
   m_ObjectHideFlags: 1
