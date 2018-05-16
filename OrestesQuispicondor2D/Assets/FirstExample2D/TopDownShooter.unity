@@ -453,6 +453,11 @@ Prefab:
       propertyPath: trigger
       value: 
       objectReference: {fileID: 840214651}
+    - target: {fileID: 114955249558235324, guid: 290e6e7b876c44103ac8971f41682ea4,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 637896240}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 290e6e7b876c44103ac8971f41682ea4, type: 2}
   m_IsPrefabParent: 0
@@ -504,6 +509,11 @@ Prefab:
       propertyPath: trigger
       value: 
       objectReference: {fileID: 840214651}
+    - target: {fileID: 114955249558235324, guid: 290e6e7b876c44103ac8971f41682ea4,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 637896240}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 290e6e7b876c44103ac8971f41682ea4, type: 2}
   m_IsPrefabParent: 0
@@ -11258,16 +11268,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114241920059794372, guid: 59b8273d1c32479429ab513e04a33ddd,
-        type: 2}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1670737072}
-    - target: {fileID: 114241920059794372, guid: 59b8273d1c32479429ab513e04a33ddd,
-        type: 2}
-      propertyPath: shootRate
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59b8273d1c32479429ab513e04a33ddd, type: 2}
   m_IsPrefabParent: 0
@@ -11538,6 +11538,11 @@ Prefab:
       propertyPath: trigger
       value: 
       objectReference: {fileID: 840214651}
+    - target: {fileID: 114955249558235324, guid: 290e6e7b876c44103ac8971f41682ea4,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 637896240}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 290e6e7b876c44103ac8971f41682ea4, type: 2}
   m_IsPrefabParent: 0
@@ -12073,11 +12078,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b248220cc58b9c3458bdffe0d483cc18, type: 2}
   m_IsPrefabParent: 0
---- !u!95 &1670737072 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 95384882777243628, guid: 59b8273d1c32479429ab513e04a33ddd,
-    type: 2}
-  m_PrefabInternal: {fileID: 626208146}
 --- !u!1 &1747216806
 GameObject:
   m_ObjectHideFlags: 0

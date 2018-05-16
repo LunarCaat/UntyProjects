@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4027642612055070}
   - component: {fileID: 212290997790928238}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Polygon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4142321798511348}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: -982381405332843317, guid: 0000000000000000d000000000000000, type: 0}
@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 4898665052987836}
   - component: {fileID: 212764424436342856}
   - component: {fileID: 120240839392141470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SightDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 61593333023368192}
   - component: {fileID: 50827274137046312}
   - component: {fileID: 114241920059794372}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerConRigidBody
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4763330545483218}
   - component: {fileID: 212665347249625938}
   - component: {fileID: 95384882777243628}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CharacterSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,6 +226,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114241920059794372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,7 +250,9 @@ MonoBehaviour:
   sightObject: {fileID: 4027642612055070}
   sightLine: {fileID: 120240839392141470}
   Rigidbody2D: {fileID: 50827274137046312}
-  animator: {fileID: 0}
+  animator: {fileID: 95384882777243628}
+  shootRate: 0.1
+  health: 12
 --- !u!120 &120240839392141470
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -263,6 +266,7 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -293,12 +297,15 @@ LineRenderer:
     widthCurve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
+      - serializedVersion: 3
         time: 0
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
@@ -351,6 +358,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -395,6 +403,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -439,6 +448,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -483,6 +493,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

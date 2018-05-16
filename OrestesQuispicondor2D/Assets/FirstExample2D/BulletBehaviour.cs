@@ -28,7 +28,7 @@ public class BulletBehaviour : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         SpriteRenderer otherRender = other.gameObject.GetComponent<SpriteRenderer>();
-        if (otherRender != null&& other.CompareTag("Block"))
+        if (otherRender != null&& other.CompareTag("Enemy"))
         {
             int targetAmmount= (otherRender.color==spriteRendered.color)?5:2;
             other.GetComponent<BlockEntitity>().DecreaseLife(targetAmmount);

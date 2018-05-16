@@ -24,6 +24,12 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
     public float shootRate=0.1f;
     private bool isShooting=false;
 
+    public int health=12;
+    public bool canGetDamaged=true;
+
+
+    private float canDamageAgaintimer =0f;
+
     struct Axis
     {
         public string name;
@@ -112,16 +118,15 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
             StartCoroutine("ContinuousShoot");
         }
 
-        //if (Input.GetMouseButton(0))
-        //{
-        //    timer += Time.deltaTime;
-        //    if (timer >= 0.1f)
-        //    {
-        //        Shoot();
-        //        timer = 0;
-        //    }
+        if (!canGetDamaged)
+        {
+           canDamageAgaintimer -= Time.deltaTime;
+           if (canDamageAgaintimer <  0f)
+           {
+               canGetDamaged=true;
+           }
 
-            //}
+        }
             //isShooting = Input.GetMouseButton(0);
 
     }
@@ -253,11 +258,29 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
     //        Debug.Log("BlockCollision");
     //    }
     //}
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        
+    
+    public void canDamageAgainLater(){
+        canGetDamaged=false;
+        canDamageAgaintimer =10f;
     }
+    public void damagePlayer(int damage){
+        if(canGetDamaged){
+            canDamageAgainLater();
+            health-=damage;
+            
+        }
+    }
+
+
+    /*void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject obj=collision.gameObject;
+        if (obj.CompareTag("Enemy")|| obj.CompareTag("EnemyBullet")&&canGetDamaged){
+            canGetDamaged=false;
+            health--;
+            StartCoroutine("canGetDamagedAgain");
+        }
+    }*/
 
     void OnTriggerEnter2D(Collider2D other)
     {

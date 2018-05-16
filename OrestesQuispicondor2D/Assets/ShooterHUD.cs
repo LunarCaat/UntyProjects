@@ -12,6 +12,8 @@ public class ShooterHUD : MonoBehaviour {
     public GameObject weaponPrefab;
     int lastColorIndex;
 
+    int health;
+
 	void Start () {
         debugText= transform.Find("DebugText").GetComponent<Text>();
         collection = transform.Find("WeaponCollection");
@@ -21,6 +23,8 @@ public class ShooterHUD : MonoBehaviour {
             collection.GetChild(i).localPosition= new Vector3 (spacing*i,0,0);
         }
         lastColorIndex = player.ColorIndex;
+        health = player.health;
+        debugText.text= "Player health : "+ health;
     }
 	
 	// Update is called once per frame
@@ -37,6 +41,10 @@ public class ShooterHUD : MonoBehaviour {
             Debug.Log("Weapon Changed!");
         }
         lastColorIndex = player.ColorIndex;
+
+
+        health = player.health;
+        debugText.text= "Player health : "+ health;
         //Transform targetObject = transform.Find("WeaponCollection").GetChild(0);
         //targetObject.GetComponent<RectTransform>().position = new Vector3(25,25,0);
         //debugText.text = targetObject.name;
