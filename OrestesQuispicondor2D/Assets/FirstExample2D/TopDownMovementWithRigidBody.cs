@@ -5,6 +5,8 @@ using UnityEngine;
 public class TopDownMovementWithRigidBody : MonoBehaviour {
     public float speed =10;
     public float angleVelocity = 100;
+    public static bool winCondition=false;
+    public static bool gameOver = false;
 
     public GameObject bullet;
 
@@ -283,10 +285,27 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
         canDamageAgaintimer =10f;
     }
     public void damagePlayer(int damage) {
-        if (canGetDamaged) {
+        if (canGetDamaged&&!gameOver) {
             StartCoroutine(Flash(flashSpeed));
-            health-=damage;
-            
+            if (health - damage <= 0)
+            {
+                if (!winCondition)
+                {
+                    health = 0;
+                    gameOver = true;
+                    gameObject.SetActive(false);
+                    //velocity = Vector3.zero;
+                    //enabled = false;
+                }
+                    
+
+            }
+            else
+            {
+                
+                if (!winCondition)
+                    health -= damage;
+            }
         }
     }
 

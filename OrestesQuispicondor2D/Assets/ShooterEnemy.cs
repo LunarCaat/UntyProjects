@@ -11,6 +11,7 @@ public class ShooterEnemy : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = GameObject.FindWithTag("Player").transform;
+        enabled = false;
     }
 	
 	// Update is called once per frame

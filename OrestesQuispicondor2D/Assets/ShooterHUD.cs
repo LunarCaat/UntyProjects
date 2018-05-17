@@ -7,6 +7,7 @@ public class ShooterHUD : MonoBehaviour {
 
     public TopDownMovementWithRigidBody player;
     Text debugText;
+    Text gameOverText;
     public float spacing =75;
     Transform collection;
     public GameObject weaponPrefab;
@@ -16,6 +17,7 @@ public class ShooterHUD : MonoBehaviour {
 
 	void Start () {
         debugText= transform.Find("DebugText").GetComponent<Text>();
+        gameOverText = transform.Find("GameOverText").GetComponent<Text>();
         collection = transform.Find("WeaponCollection");
         for (int i =0; i<player.colors.Count;i++)
         {
@@ -50,6 +52,17 @@ public class ShooterHUD : MonoBehaviour {
         //debugText.text = targetObject.name;
 
         //debugText.text = collection.GetChild(player.ColorIndex).GetComponent<RectTransform>().sizeDelta.ToString();
+
+        if (TopDownMovementWithRigidBody.gameOver && !gameOverText.gameObject.activeInHierarchy)
+        {
+            gameOverText.text = "Try again!";
+            gameOverText.gameObject.SetActive(true);
+        }
+        else if (TopDownMovementWithRigidBody.winCondition && !gameOverText.gameObject.activeInHierarchy)
+        {
+            gameOverText.text = "You did it!";
+            gameOverText.gameObject.SetActive(true);
+        }
 
     }
     //void LateUpdate()

@@ -69,7 +69,7 @@ public class BulletBehaviour : MonoBehaviour {
         gameObject.SetActive(false);
         timer = 0;
     }
-    
-    
+
+
 
 }
