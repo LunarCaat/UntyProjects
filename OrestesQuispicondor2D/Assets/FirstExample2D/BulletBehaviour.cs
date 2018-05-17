@@ -37,7 +37,7 @@ public class BulletBehaviour : MonoBehaviour {
             if (otherRender != null)
             {
 
-            int targetAmmount = ((otherRender.color == spriteRendered.color) ? 5 : 2)*damage;
+            int targetAmmount = ((otherRender.color == spriteRendered.color) ? 5 : 0)*damage;
             other.GetComponent<BlockEntitity>().DecreaseLife(targetAmmount);
             //Destroy(other.gameObject);
             DestroyThis();
@@ -46,6 +46,7 @@ public class BulletBehaviour : MonoBehaviour {
         if (other.CompareTag("Player") && type == BulletBehaviour.BulletType.Enemy)
         {
             other.GetComponent<TopDownMovementWithRigidBody>().damagePlayer(damage);
+            DestroyThis();
         }
 
         

@@ -5,7 +5,9 @@ using UnityEngine;
 public class ShooterEnemy : MonoBehaviour {
     public Transform sightDirection;
     private Transform player;
-    private float timer = 0;
+    private float timer = 2.5f;
+    public float shootDelay = 5f;
+    public SpriteRenderer spriteRendered;
     // Use this for initialization
     void Start () {
         player = GameObject.FindWithTag("Player").transform;
@@ -15,13 +17,14 @@ public class ShooterEnemy : MonoBehaviour {
 	void Update () {
         sightDirection.up = (player.position - transform.position).normalized;
 
-        if (timer < 10)
+        
+        if (timer < shootDelay)
         {
             timer += Time.deltaTime;
         }
         else
         {
-            timer -= 10;
+            timer -= shootDelay;
             Shoot();
         }
 
@@ -43,9 +46,10 @@ public class ShooterEnemy : MonoBehaviour {
         BulletBehaviour bullet = tempObj.GetComponent<BulletBehaviour>();
         bullet.type = BulletBehaviour.BulletType.Enemy;
 
-        SpriteRenderer tempRenderer = tempObj.GetComponent<SpriteRenderer>();
-        
 
+        SpriteRenderer tempRenderer = tempObj.GetComponent<SpriteRenderer>();
+
+        tempRenderer.color = spriteRendered.color;
         tempRenderer.sprite = SpriteManagerScript.current.playerBulllet;
         //Destroy(tempRenderer,2);
         TopDownCamMovement camera = Camera.main.GetComponent<TopDownCamMovement>();
@@ -57,4 +61,16 @@ public class ShooterEnemy : MonoBehaviour {
 
 
     }
+
+    void OnBecameVisible()
+    {
+        enabled = true;
+        Debug.Log("Hey I'm visible again!");
+    }
+    void OnBecameInvisible()
+    {
+        enabled = false;
+        Debug.Log("Hey I'm invisible!");
+    }
+
 }

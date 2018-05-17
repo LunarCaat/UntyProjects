@@ -243,8 +243,8 @@ MonoBehaviour:
   bullet: {fileID: 1540791847068296, guid: cd732fc8a3f9b1046b89ec9f60c0e399, type: 2}
   colors:
   - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.006896496, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0.006896496, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
   spriteRendered: {fileID: 212635539926066112}
   sightDirection: {fileID: 4898665052987836}
   sightObject: {fileID: 4027642612055070}
