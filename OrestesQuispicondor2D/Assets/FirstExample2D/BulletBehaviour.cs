@@ -6,7 +6,12 @@ public class BulletBehaviour : MonoBehaviour {
     public float speed=1;
     private SpriteRenderer spriteRendered;
     private float timer = 0;
-    
+
+    public enum BulletType {Enemy,Player };
+
+    public BulletType type;
+    public int damage=1;
+
     // Use this for initialization
     void Start () {
         spriteRendered = GetComponent<SpriteRenderer>();
@@ -27,13 +32,20 @@ public class BulletBehaviour : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        SpriteRenderer otherRender = other.gameObject.GetComponent<SpriteRenderer>();
-        if (otherRender != null&& other.CompareTag("Enemy"))
-        {
-            int targetAmmount= (otherRender.color==spriteRendered.color)?5:2;
+        if (other.CompareTag("Enemy")&&type==BulletBehaviour.BulletType.Player) {
+            SpriteRenderer otherRender = other.gameObject.GetComponent<SpriteRenderer>();
+            if (otherRender != null)
+            {
+
+            int targetAmmount = ((otherRender.color == spriteRendered.color) ? 5 : 2)*damage;
             other.GetComponent<BlockEntitity>().DecreaseLife(targetAmmount);
             //Destroy(other.gameObject);
             DestroyThis();
+            }
+        }
+        if (other.CompareTag("Player") && type == BulletBehaviour.BulletType.Enemy)
+        {
+            other.GetComponent<TopDownMovementWithRigidBody>().damagePlayer(damage);
         }
 
         
@@ -56,5 +68,7 @@ public class BulletBehaviour : MonoBehaviour {
         gameObject.SetActive(false);
         timer = 0;
     }
+    
+    
 
 }

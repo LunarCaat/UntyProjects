@@ -152,11 +152,15 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
         GameObject tempObj=ObjectPoolerScript.current.GetPooledObject();
         tempObj.transform.position = sightDirection.Find("Cannon").position;
         tempObj.transform.rotation = sightDirection.rotation;
-        
 
+
+        BulletBehaviour bullet=tempObj.GetComponent<BulletBehaviour>();
+        bullet.type = BulletBehaviour.BulletType.Player;
 
         SpriteRenderer tempRenderer = tempObj.GetComponent<SpriteRenderer>();
         tempRenderer.color= spriteRendered.color;
+        
+        tempRenderer.sprite = SpriteManagerScript.current.playerBulllet;
         //Destroy(tempRenderer,2);
         TopDownCamMovement camera= Camera.main.GetComponent<TopDownCamMovement>();
         camera.speed = 25;
