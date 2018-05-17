@@ -68874,8 +68874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b87e240ab4f33b49b14a5f962f5ef5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBulllet: {fileID: 21300000, guid: 911e5e1d9a670a24a8e8df124eb0208a, type: 3}
-  enemyBulllet: {fileID: 0}
+  playerBulllet: {fileID: 21300000, guid: 682fc82fd83442a4bb36c11d526dfeb8, type: 3}
+  enemyBulllet: {fileID: 21300000, guid: 0652b7891c45cb54fbb7192a1371343e, type: 3}
 --- !u!4 &514687850
 Transform:
   m_ObjectHideFlags: 0
