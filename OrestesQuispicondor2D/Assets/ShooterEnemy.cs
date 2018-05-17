@@ -53,9 +53,9 @@ public class ShooterEnemy : MonoBehaviour {
         tempRenderer.color = spriteRendered.color;
         tempRenderer.sprite = SpriteManagerScript.current.playerBulllet;
         //Destroy(tempRenderer,2);
-        TopDownCamMovement camera = Camera.main.GetComponent<TopDownCamMovement>();
-        camera.speed = 25;
-        camera.impulseDirection = sightDirection.up;
+        //TopDownCamMovement camera = Camera.main.GetComponent<TopDownCamMovement>();
+        //camera.speed = 25;
+        //camera.impulseDirection = sightDirection.up;
 
         tempObj.SetActive(true);
 
