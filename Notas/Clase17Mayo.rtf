@@ -1,0 +1,33 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 El animator es el encargado de manejar cuando se reproducen las animaciones.\
+Este es b\'e1sicamente una maquina de estados.\
+\
+En el animator se puede controlar la velocidad de la animaci\'f3n dinamicamente en el\
+parameter speed del inspector al hacerle click.\
+\
+Por modificar:\
+-Eliminar animaciones idle y hacer que por c\'f3digo la velocidad de la animaci\'f3n \
+sea 0 cuando pare y 1 cuando camina.\
+-Eliminar iswalking y anadir valor de -1 a isfacing como reemplazo.\
+\
+Considerar:\
+-Reutilizar animaciones con la maquina de estado. Ej: Si quieres hacer que rote\
+mientras camine tipo pokemon, puedes hacer que any se valla a un substate machine\
+y cuando termine se vaya a end.\
+\
+-Blend tree puede ahorrar animaciones.\
+En 2d puede hacer flip de una animaci\'f3n caminando a la derecha para que\
+sea hacia la izquierda.\
+\
+En 3d se puede hacer animaciones donde por ejemplo\
+haga una animaci\'f3n esquel\'e9tica por la cabeza y el cuerpo tenga otra y se combinen.\
+ \
+Revisar:\
+Como funciona y usar biend trees.\
+La parte de animaci\'f3n de 2d/3d en cgcookie para profundizar.}
