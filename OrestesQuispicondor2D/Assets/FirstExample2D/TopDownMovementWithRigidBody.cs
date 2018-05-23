@@ -36,6 +36,12 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
     public float flashSpeed=0.1f;
     public SpriteRenderer characterSprite;
 
+    const string DIR_HORIZONTAL = "Horizontal";
+    const string DIR_VERTICAL = "Vertical";
+
+
+    public bool isMoving {get{return (GetAxis(DIR_HORIZONTAL)!=0 || GetAxis(DIR_VERTICAL)!=0) ;}}
+
     struct Axis
     {
         public string name;
@@ -66,13 +72,31 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
         //transform.Translate((Vector3.right * GetAxis("Horizontal") + Vector3.up * GetAxis("Vertical")) * speed * Time.deltaTime, Space.World);
         //sightDirection.Rotate(Vector3.back * GetAxis("Arrow_H") * angleVelocity*Time.deltaTime);
 
-        velocity = Vector3.zero;
-        velocity.x = GetAxis("Horizontal") * speed;
-        velocity.y = GetAxis("Vertical") * speed;
+        //velocity = Vector3.zero;
+        //velocity.x = GetAxis("Horizontal") * speed;
+        //velocity.y = GetAxis("Vertical") * speed;
+
+        Vector3 step = new  Vector3(GetAxis("Horizontal"),GetAxis("Vertical"));
+        step*= speed *Time.deltaTime;
+        Rigidbody2D.MovePosition(transform.position +step);
+
+        //if(animator.GetFloat(DIR_HORIZONTAL)!=step.x){
+        //	animator.SetFloat()
+        //}
+        animator.SetBool("Moving",isMoving);
+        if(isMoving){
+        	animator.SetFloat("LastHorizontal",step.x);
+        	animator.SetFloat("LastVertical",step.y);
+
+        }
+        animator.SetFloat("Horizontal",step.x);
+        animator.SetFloat("Vertical",step.y);
+        //animator.SetFloat("LastHorizontal",step.x);
 
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (GetAxis("Horizontal")==0 && GetAxis("Vertical")==0)
+        //Anadir version modificada de walking despues
+        /*if (GetAxis("Horizontal")==0 && GetAxis("Vertical")==0)
         {
             
                 animator.SetBool("Walking", false);
@@ -80,7 +104,7 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
         else 
         {
             animator.SetBool("Walking", true);
-        }
+        }*/
 
         mouseWorldPos.z = transform.position.z;
         Debug.DrawLine(transform.position, mouseWorldPos, Color.red);
@@ -102,7 +126,11 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
         int facing= (Mathf.CeilToInt((sightDirection.rotation.eulerAngles.z+45)/90))%4;
         Debug.Log(facing);
         
-        animator.SetInteger("Facing",facing);
+        
+        //Implementar otro modo de facing despues
+        //animator.SetInteger("Facing",facing);
+
+
         //sightDirection.Rotate(Vector3.back * GetAxis("Arrow_H") * angleVelocity * Time.deltaTime);
 
         //if (Input.GetKeyDown(KeyCode.E))
@@ -142,7 +170,7 @@ public class TopDownMovementWithRigidBody : MonoBehaviour {
 
 
 
-        Rigidbody2D.velocity = velocity;
+        //Rigidbody2D.velocity = velocity;
 
     }
 

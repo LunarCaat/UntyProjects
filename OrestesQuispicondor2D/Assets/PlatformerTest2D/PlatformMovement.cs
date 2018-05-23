@@ -27,14 +27,24 @@ public class PlatformMovement : MonoBehaviour {
         transform.Translate(Input.GetAxis("Horizontal")*horizontalSpeed*Time.deltaTime, verticalSpeed*Time.deltaTime, 0);
 
 
+        Ray2D ray2d = new Ray2D(transform.position,Vector3.down);
+        Physics2D.Raycast();
+
+        Debug.DrawRay(transform.position, Vector3.down, Color.green);
 
 	}
 
 
 	void OnTriggerEnter2D(Collider2D other){
         if (other.CompareTag("Platform")){
+            if(verticalSpeed<0)
             isGrounded = true;
             verticalSpeed = 0;
+            RayCastHit2D = Physics2D.Raycast(transform.position,Vector3.down).distance;
+            ContactFilter2D filter = new ContactFilter2D();
+            filter.useTriggers =true;
+            float currentDistance = 
+            transform.Translate(0,1-currentDistance,0);
         }
        
 	}
