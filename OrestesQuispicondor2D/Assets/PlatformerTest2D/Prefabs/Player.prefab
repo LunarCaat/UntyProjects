@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 70227930432864884}
   - component: {fileID: 50862503581724026}
   - component: {fileID: 114428508607571990}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 1
   horizontalSpeed: 2
-  jumpforce: 10
+  jumpForce: 10
+  jetpackForce: 10
+  totalGravity: 0
 --- !u!212 &212992940027430784
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -204,6 +204,11 @@ Prefab:
       propertyPath: jumpforce
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114428508607571990, guid: 11f26233e4efd45b9b71ec9726790a80,
+        type: 2}
+      propertyPath: jetpackForce
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11f26233e4efd45b9b71ec9726790a80, type: 2}
   m_IsPrefabParent: 0
