@@ -10,17 +10,18 @@ public class PlatformMovement : MonoBehaviour {
     public float jetpackForce = 10;
     public float totalGravity = 0;
     public float bottomMaxSpeed = -10;
-    public SpriteRenderer spriteRenderer;
+    public float rayDetectionDistance = 0.1f;
 
     public float raydetectionDistance =0.1f;
 
 
-    Vector3 downLeftNode { get { return transform.position - new Vector3(0.5f, 1, 0); } }
-    Vector3 downRightNode { get { return transform.position + new Vector3(0.5f, -1, 0); } }
-    Vector3 sideTopNode { get { return transform.position - new Vector3(1, 0, 0); } }
-    Vector3 sideBottomNode { get { return transform.position + new Vector3(1, 1, 0); } }
+    Vector3 leftNode { get { return transform.position - new Vector3(0.5f, 1, 0); } }
+    Vector3 rightNode { get { return transform.position + new Vector3(0.5f, -1, 0); } }
 
     bool isGrounded;
+
+    SpriteRenderer spriteRenderer;
+
     // Use this for initialization
     void Start()
     {
@@ -30,62 +31,52 @@ public class PlatformMovement : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        float rayDistance = ((verticalSpeed / bottomMaxSpeed)*gravity*2f)+0.1f;
 
-        //RaycastHit2D donwLeft = Physics2D.Raycast(downLeftNode, Vector3.down, rayDistance);
-        //RaycastHit2D downRight = Physics2D.Raycast(downRightNode, Vector3.down, rayDistance);
-        RaycastHit2D donwLeft = Physics2D.Raycast(downLeftNode, Vector3.down, raydetectionDistance);
-        RaycastHit2D downRight = Physics2D.Raycast(downRightNode, Vector3.down, raydetectionDistance);
-        RaycastHit2D sideLeft = Physics2D.Raycast(downLeftNode +new Vector3(0, 0.1f, 0), Vector3.left, 0.1f);
-        RaycastHit2D sideRght = Physics2D.Raycast(downRightNode+ new Vector3(0, 0.1f, 0), Vector3.right, 0.1f);
+        RaycastHit2D downLeft = Physics2D.Raycast(leftNode, Vector3.down, rayDetectionDistance);
+        RaycastHit2D downRight = Physics2D.Raycast(rightNode, Vector3.down, rayDetectionDistance);
+        RaycastHit2D sideLeft = Physics2D.Raycast(leftNode + new Vector3(0, 0.1f, 0), Vector3.left, 0.1f);
+        RaycastHit2D sideRight = Physics2D.Raycast(rightNode + new Vector3(0, 0.1f, 0), Vector3.right, 0.1f);
 
-        //if (donwLeft || downRight)
-        //{
-        //    Debug.Log("Left or Right ray hit!");
-        //    CheckReposition(new RaycastHit2D[] { donwLeft, downRight });
-        //}
-        //else {
-        //    isGrounded = false;
-        //}
+        /*if (downLeft || downRight) {
+            CheckReposition (new RaycastHit2D[] { downLeft, downRight });
+        } else { 
+            isGrounded = false; 
+        }*/
         float horizontalDirection = Input.GetAxis("Horizontal");
-        if (horizontalDirection<0){
-            if (!spriteRenderer.flipX) {spriteRenderer.flipX = true;}
-            if (sideLeft){
-                if(sideLeft.distance == 0){
-                    transform.Translate(0, 0.1f, 0);
-                }
-                    
+        if (horizontalDirection < 0)
+        {
+            if (!spriteRenderer.flipX) { spriteRenderer.flipX = true; }
+            if (sideLeft)
+            {
                 horizontalDirection = 0;
             }
-
         }
-
-
-        if (sideRght && horizontalDirection > 0)
+        else if (horizontalDirection > 0)
         {
             if (spriteRenderer.flipX) { spriteRenderer.flipX = false; }
-            horizontalDirection = 0;
+            if (sideRight)
+            {
+                horizontalDirection = 0;
+            }
         }
-
         if (!isGrounded)
         {
-            //verticalSpeed -= gravity * Time.deltaTime;
-            SubstractSpeed(gravity * Time.deltaTime);
+            verticalSpeed -= gravity * Time.deltaTime;
             if (verticalSpeed < 0)
             {
-                raydetectionDistance = 10 * -verticalSpeed * Time.deltaTime;
-                CheckVerticalClamp(new RaycastHit2D[] { donwLeft, downRight });
+                rayDetectionDistance = -verticalSpeed * Time.deltaTime;
+                CheckVerticalClamp(new RaycastHit2D[] { downLeft, downRight });
             }
-            else
-            {
-                if (raydetectionDistance != 0.1f)
+            else {
+                if (rayDetectionDistance != 0.1f)
                 {
-                    raydetectionDistance = 0.1f;
+                    rayDetectionDistance = 0.1f;
                 }
             }
         }
         else {
-            if(!donwLeft &&!downRight){
+            if (!downLeft && !downRight)
+            {
                 isGrounded = false;
             }
             else if (Input.GetKeyDown(KeyCode.Space))
@@ -95,84 +86,57 @@ public class PlatformMovement : MonoBehaviour {
             }
         }
 
-
-        //if (donwLeft || downRight &&!isGrounded)
-        //{
-        //    if (!isGrounded){
-                
-        //    }else{
-                
-        //    }
-
-        //} else {
-        //    isGrounded = true;
-        //}
-
         transform.Translate(horizontalDirection * horizontalSpeed * Time.deltaTime, verticalSpeed * Time.deltaTime, 0);
     }
 
-    void CheckVerticalClamp(RaycastHit2D[] nodeRays){
-        
-            foreach (RaycastHit2D ray in nodeRays)
+    void CheckVerticalClamp(RaycastHit2D[] nodeRays)
+    {
+        foreach (RaycastHit2D ray in nodeRays)
+        {
+            if (ray && rayDetectionDistance > ray.distance)
             {
-                if (ray && raydetectionDistance>ray.distance)
+                if (ray.distance <= float.Epsilon)
                 {
-                    if (ray.distance == 0)
-                    {
-                        Debug.Log();
-                        //Debug.Log(ray.collider.bounds.ClosestPoint(downLeftNode));
-                        float difference = downLeftNode.y - ray.collider.bounds.ClosestPoint(downLeftNode).y;
-                        transform.Translate(0, -difference,0);
-                        Debug.Log("Went in RD:" + ray.distance + "and DIFF: "-difference);
-                    }
-                    else
-                    {
-                        Debug.Log("Clamped RD:" + ray.distance);
-                        transform.Translate(0, -ray.distance, 0);
-                        
-                    }
-                    isGrounded = true;
-                    verticalSpeed = 0;
-
-
-                    break;
+                    float difference = leftNode.y - ray.collider.bounds.ClosestPoint(leftNode).y;
+                    transform.Translate(0, -difference, 0);
                 }
+                else {
+                    transform.Translate(0, -ray.distance, 0);
+                }
+                isGrounded = true;
+                verticalSpeed = 0;
+                break;
             }
-
+        }
     }
-
 
     void CheckReposition(RaycastHit2D[] nodeRays)
     {
-        if (verticalSpeed <= 0)
+        Debug.Log(verticalSpeed);
+        foreach (RaycastHit2D ray in nodeRays)
         {
-            foreach (RaycastHit2D ray in nodeRays)
+            if (ray && verticalSpeed <= 0)
             {
-                if (ray)
+                float distance = ray.collider.transform.localScale.y * ray.collider.bounds.size.y / 2;
+                float difference = (leftNode.y - ray.collider.transform.position.y) - distance;
+                if (Mathf.Abs(difference) <= 0.5f)
                 {
-                    float distance = ray.collider.transform.localScale.y * ray.collider.bounds.size.y / 2;
-                    float difference = (downLeftNode.y - ray.collider.transform.position.y) - distance;
-                    if (Mathf.Abs(difference)<0.15f)
-                    {
-                        transform.Translate(0, -difference, 0);
-                        isGrounded = true;
-                        verticalSpeed = 0;
-                        //Debug.Log("It's grounded!");
-                    }
-                    Debug.DrawLine(transform.position + Vector3.down, ray.collider.transform.position, Color.green);
-                    break;
+                    transform.Translate(0, -difference, 0);
+                    isGrounded = true;
+                    verticalSpeed = 0;
                 }
+                Debug.DrawLine(transform.position + Vector3.down, ray.collider.transform.position, Color.green);
+                break;
             }
         }
-            
     }
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(downLeftNode, 0.2f);
-        Gizmos.DrawSphere(downRightNode, 0.2f);
+        Gizmos.DrawSphere(leftNode, 0.2f);
+        Gizmos.DrawSphere(rightNode, 0.2f);
         Gizmos.color = Color.white;
-        Gizmos.DrawRay(downLeftNode,Vector3.down*raydetectionDistance);
+        Gizmos.DrawRay(leftNode, Vector3.down * rayDetectionDistance);
     }
 
     void SubstractSpeed(float speedToSub){
