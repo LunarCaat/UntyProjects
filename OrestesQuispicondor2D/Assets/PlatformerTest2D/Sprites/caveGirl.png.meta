@@ -39,19 +39,19 @@ TextureImporter:
     21300068: girl2d_34
     21300070: girl2d_35
     21300072: girl2d_36
-    21300074: caveGirl_0
-    21300076: caveGirl_1
-    21300078: caveGirl_2
-    21300080: caveGirl_3
-    21300082: caveGirl_4
-    21300084: caveGirl_5
-    21300086: caveGirl_6
-    21300088: caveGirl_7
-    21300090: caveGirl_8
-    21300092: caveGirl_9
-    21300094: caveGirl_10
-    21300096: caveGirl_11
-    21300098: caveGirl_12
+    21300074: idle0
+    21300076: idle1
+    21300078: idle2
+    21300080: idle3
+    21300082: idle4
+    21300084: idle5
+    21300086: walk0
+    21300088: walk1
+    21300090: walk2
+    21300092: walk3
+    21300094: walk4
+    21300096: walk5
+    21300098: jump0
     21300100: caveGirl_13
     21300102: caveGirl_14
     21300104: caveGirl_15
@@ -76,6 +76,12 @@ TextureImporter:
     21300142: caveGirl_34
     21300144: caveGirl_35
     21300146: caveGirl_36
+    21300148: idle0
+    21300150: idle1
+    21300152: idle2
+    21300154: idle3
+    21300156: idle4
+    21300158: idle5
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -156,261 +162,261 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: caveGirl_0
+      name: idle0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 444
-        width: 98
-        height: 74
+        x: 14
+        y: 450
+        width: 60
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d9507459e72d4b01a7c8ef0a1708c68
+      spriteID: 3d64f2aad3d034072bbab6f6a6325d45
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_1
+      name: idle1
       rect:
         serializedVersion: 2
-        x: 99
-        y: 444
-        width: 98
-        height: 74
+        x: 113
+        y: 450
+        width: 60
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76ed10be1fe5e4a2aa2f4ca9368257a7
+      spriteID: 1a59b8c25486c48c0a4bea3100f420ef
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_2
+      name: idle2
       rect:
         serializedVersion: 2
-        x: 198
-        y: 444
-        width: 98
-        height: 74
+        x: 211
+        y: 450
+        width: 60
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7602b3dc9cfa64a8084eac8c95a0915b
+      spriteID: 4f5359675d1b14322af0c05cd7bb59fa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_3
+      name: idle3
       rect:
         serializedVersion: 2
-        x: 297
-        y: 444
-        width: 98
-        height: 74
+        x: 311
+        y: 450
+        width: 60
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bb55414b22924f12860bdffbe4bea87
+      spriteID: e706836320e6e4a59a4261713f7bb782
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_4
+      name: idle4
       rect:
         serializedVersion: 2
-        x: 396
-        y: 444
-        width: 98
-        height: 74
+        x: 410
+        y: 450
+        width: 60
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bc2ce224a4524ddbba7215fb52d5c06
+      spriteID: 8210f4826f31b47bc8a21f0dc7ef0946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_5
+      name: idle5
       rect:
         serializedVersion: 2
-        x: 495
-        y: 444
-        width: 98
-        height: 74
+        x: 509
+        y: 450
+        width: 60
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ead2dad522ad44923b50a6c289799c79
+      spriteID: 069aba996a44a4a569374a7a4e66188c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_6
+      name: walk0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 370
-        width: 98
-        height: 74
+        x: 10
+        y: 377
+        width: 64
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e41f36da2f2584755873894c9ee20a71
+      spriteID: d853e7817246f492cbdbba358aef4ae1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_7
+      name: walk1
       rect:
         serializedVersion: 2
-        x: 99
-        y: 370
-        width: 98
-        height: 74
+        x: 107
+        y: 378
+        width: 66
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7600b9283290a4986afe6d98df49bddf
+      spriteID: 95bea140c0c7c467a96e4a444c346330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_8
+      name: walk2
       rect:
         serializedVersion: 2
-        x: 198
-        y: 370
-        width: 98
-        height: 74
+        x: 208
+        y: 376
+        width: 64
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df75a0dc6385d406589bdd36c5d2e31a
+      spriteID: 024cc68e24d0a4d1ea40af9a10897a52
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_9
+      name: walk3
       rect:
         serializedVersion: 2
-        x: 297
-        y: 370
-        width: 98
-        height: 74
+        x: 310
+        y: 375
+        width: 61
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fc7270d5b288448e832f5eaa36823d5
+      spriteID: 204b3af2dee1348cf8d65436c890c700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_10
+      name: walk4
       rect:
         serializedVersion: 2
-        x: 396
-        y: 370
-        width: 98
-        height: 74
+        x: 413
+        y: 376
+        width: 57
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78b5b556125d340efad93278a2f88e41
+      spriteID: ce29272fee6c843c1a387d12c8ffbd8a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_11
+      name: walk5
       rect:
         serializedVersion: 2
-        x: 495
-        y: 370
-        width: 98
-        height: 74
+        x: 517
+        y: 377
+        width: 52
+        height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54538be9003e2410ca426f7638874ade
+      spriteID: fef094ba9e104450a897b274cda1d8ee
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: caveGirl_12
+      name: jump0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 296
-        width: 98
-        height: 74
+        x: 19
+        y: 303
+        width: 56
+        height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea1c00ae9b14d4afd8ee0d2b55e85751
+      spriteID: 04ec29028c16949b2a403a02a8c034bc
       vertices: []
       indices: 
       edges: []
@@ -419,18 +425,18 @@ TextureImporter:
       name: caveGirl_13
       rect:
         serializedVersion: 2
-        x: 99
-        y: 296
-        width: 98
-        height: 74
+        x: 114
+        y: 303
+        width: 61
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6350f901be107471e80d536aec9fbd4e
+      spriteID: bef34dfa978e64ef2a44093b49989bf8
       vertices: []
       indices: 
       edges: []
@@ -439,18 +445,18 @@ TextureImporter:
       name: caveGirl_14
       rect:
         serializedVersion: 2
-        x: 198
-        y: 296
-        width: 98
-        height: 74
+        x: 212
+        y: 304
+        width: 60
+        height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49d541f4eb2334ac7bb12fb7a30c29cb
+      spriteID: a4d59735b24974324b7e98596a2017c5
       vertices: []
       indices: 
       edges: []
@@ -459,18 +465,18 @@ TextureImporter:
       name: caveGirl_15
       rect:
         serializedVersion: 2
-        x: 297
-        y: 296
-        width: 98
-        height: 74
+        x: 308
+        y: 304
+        width: 63
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b514ba3cba3e4909a9238dde650f90a
+      spriteID: 8f7009005ce1e490c8571e1aa078674b
       vertices: []
       indices: 
       edges: []
@@ -479,18 +485,18 @@ TextureImporter:
       name: caveGirl_16
       rect:
         serializedVersion: 2
-        x: 396
-        y: 296
-        width: 98
-        height: 74
+        x: 408
+        y: 304
+        width: 63
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fdef30e03e264240af6669328ae5a91
+      spriteID: 44acc445e9a6c476cb415f3b210b4be9
       vertices: []
       indices: 
       edges: []
@@ -499,18 +505,18 @@ TextureImporter:
       name: caveGirl_17
       rect:
         serializedVersion: 2
-        x: 495
-        y: 296
-        width: 98
-        height: 74
+        x: 506
+        y: 302
+        width: 63
+        height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e0612e7a160b425284ab0312d738be3
+      spriteID: 608b5c989ef0d49b9b494679dc507c67
       vertices: []
       indices: 
       edges: []
@@ -519,18 +525,18 @@ TextureImporter:
       name: caveGirl_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 222
-        width: 98
-        height: 74
+        x: 31
+        y: 228
+        width: 35
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43c704911d3fc42ca817a993ed707800
+      spriteID: 037ee4da5df1d4b59acb07317909f559
       vertices: []
       indices: 
       edges: []
@@ -539,18 +545,18 @@ TextureImporter:
       name: caveGirl_19
       rect:
         serializedVersion: 2
-        x: 99
-        y: 222
-        width: 98
-        height: 74
+        x: 128
+        y: 227
+        width: 36
+        height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6e5a48ced94b4fae8a92b92ea39ba9b
+      spriteID: 13749ccecf80b42cab26d370accaef70
       vertices: []
       indices: 
       edges: []
@@ -559,18 +565,18 @@ TextureImporter:
       name: caveGirl_20
       rect:
         serializedVersion: 2
-        x: 198
-        y: 222
-        width: 98
-        height: 74
+        x: 223
+        y: 228
+        width: 41
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92be256a9810b465f90ce711aceb6fb5
+      spriteID: 09085909232eb4c0daa133cce13a50e1
       vertices: []
       indices: 
       edges: []
@@ -579,18 +585,18 @@ TextureImporter:
       name: caveGirl_21
       rect:
         serializedVersion: 2
-        x: 297
-        y: 222
-        width: 98
-        height: 74
+        x: 308
+        y: 228
+        width: 63
+        height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fefd3c659d8d74bb08aa122314eb5c06
+      spriteID: 1176bbcd3c8664a86a98c952ebf37aff
       vertices: []
       indices: 
       edges: []
@@ -599,18 +605,18 @@ TextureImporter:
       name: caveGirl_22
       rect:
         serializedVersion: 2
-        x: 396
-        y: 222
-        width: 98
-        height: 74
+        x: 409
+        y: 228
+        width: 51
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7631144f6d27541c5b386e544a453d69
+      spriteID: 6725065be5963425aae447b6f90cf801
       vertices: []
       indices: 
       edges: []
@@ -619,18 +625,18 @@ TextureImporter:
       name: caveGirl_23
       rect:
         serializedVersion: 2
-        x: 495
-        y: 222
-        width: 98
-        height: 74
+        x: 524
+        y: 228
+        width: 70
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f166c4eff002144978fb68f86a7f497a
+      spriteID: 71a541c99a26c42dea0da05851befd8b
       vertices: []
       indices: 
       edges: []
@@ -639,18 +645,18 @@ TextureImporter:
       name: caveGirl_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 148
-        width: 98
-        height: 74
+        x: 27
+        y: 154
+        width: 72
+        height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d6647e4cca9144fe9314e1b45e81a52
+      spriteID: d1b5a65ffe4eb4603b237c7439051462
       vertices: []
       indices: 
       edges: []
@@ -659,18 +665,18 @@ TextureImporter:
       name: caveGirl_25
       rect:
         serializedVersion: 2
-        x: 99
-        y: 148
-        width: 98
-        height: 74
+        x: 126
+        y: 154
+        width: 72
+        height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d098ddbc6f1e248a5827110907870cea
+      spriteID: 60810f5f0d4294fc2ac0e9a8f4351d72
       vertices: []
       indices: 
       edges: []
@@ -679,18 +685,18 @@ TextureImporter:
       name: caveGirl_26
       rect:
         serializedVersion: 2
-        x: 198
-        y: 148
-        width: 98
-        height: 74
+        x: 203
+        y: 155
+        width: 70
+        height: 65
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61ec9eeb6a6524515966bb35ef676986
+      spriteID: ba3ccd0c876494b5c97ebfb999953b83
       vertices: []
       indices: 
       edges: []
@@ -699,18 +705,18 @@ TextureImporter:
       name: caveGirl_27
       rect:
         serializedVersion: 2
-        x: 297
-        y: 148
-        width: 98
-        height: 74
+        x: 303
+        y: 157
+        width: 69
+        height: 65
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45cf6e68967934e329f2e730538174fe
+      spriteID: 9c6f3a500ff714b6884d6443432ba623
       vertices: []
       indices: 
       edges: []
@@ -719,18 +725,18 @@ TextureImporter:
       name: caveGirl_28
       rect:
         serializedVersion: 2
-        x: 396
-        y: 148
-        width: 98
-        height: 74
+        x: 397
+        y: 161
+        width: 69
+        height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ca9eae685e1846bcb17e2efd426ff1c
+      spriteID: 517854cb434954da296fd47e6e99272b
       vertices: []
       indices: 
       edges: []
@@ -740,17 +746,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 495
-        y: 148
-        width: 98
-        height: 74
+        y: 164
+        width: 70
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 752f10ff92afc4ed2af827616c5c3854
+      spriteID: 2cd3fea7bdc3443919b17b17dde99b7b
       vertices: []
       indices: 
       edges: []
@@ -759,18 +765,18 @@ TextureImporter:
       name: caveGirl_30
       rect:
         serializedVersion: 2
-        x: 0
-        y: 74
-        width: 98
-        height: 74
+        x: 1
+        y: 82
+        width: 64
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45b5f3ad06b154f2e8ba1ec12ca4c2ea
+      spriteID: 7a6b84fe780f74e85b538af0f1e196f1
       vertices: []
       indices: 
       edges: []
@@ -779,18 +785,18 @@ TextureImporter:
       name: caveGirl_31
       rect:
         serializedVersion: 2
-        x: 99
-        y: 74
-        width: 98
-        height: 74
+        x: 100
+        y: 78
+        width: 63
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca524b03f50dc49b1b14532a8a3bfb5f
+      spriteID: 54a783d00801448fba22a7ba3ee6b250
       vertices: []
       indices: 
       edges: []
@@ -799,18 +805,18 @@ TextureImporter:
       name: caveGirl_32
       rect:
         serializedVersion: 2
-        x: 198
-        y: 74
-        width: 98
-        height: 74
+        x: 202
+        y: 80
+        width: 63
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32d0c6e17e030414bb16c31a9151b8b4
+      spriteID: 045ff62f29b064695aae966760c18363
       vertices: []
       indices: 
       edges: []
@@ -819,18 +825,18 @@ TextureImporter:
       name: caveGirl_33
       rect:
         serializedVersion: 2
-        x: 297
-        y: 74
-        width: 98
-        height: 74
+        x: 323
+        y: 78
+        width: 43
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 166dca9eda4d246d9a7b80737f6ede13
+      spriteID: 5120910e305a14377811831732c2d703
       vertices: []
       indices: 
       edges: []
@@ -839,18 +845,18 @@ TextureImporter:
       name: caveGirl_34
       rect:
         serializedVersion: 2
-        x: 396
+        x: 422
         y: 74
-        width: 98
-        height: 74
+        width: 43
+        height: 67
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 658850a4e454c45dfa0b34983f50153b
+      spriteID: c4695a0c5f2404e4a8eba46621f02542
       vertices: []
       indices: 
       edges: []
@@ -859,18 +865,18 @@ TextureImporter:
       name: caveGirl_35
       rect:
         serializedVersion: 2
-        x: 495
-        y: 74
-        width: 98
-        height: 74
+        x: 521
+        y: 78
+        width: 43
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54c506aeb12154546b33f1ebc170006c
+      spriteID: f695557939d9f4989be23b19b4af0872
       vertices: []
       indices: 
       edges: []
@@ -879,18 +885,18 @@ TextureImporter:
       name: caveGirl_36
       rect:
         serializedVersion: 2
-        x: 0
+        x: 26
         y: 0
-        width: 98
-        height: 74
+        width: 46
+        height: 67
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4acb5afcac4ad4d6193742646c89ecc3
+      spriteID: 2eeae94e63fcb4b65ab992baf02a16aa
       vertices: []
       indices: 
       edges: []

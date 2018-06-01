@@ -16,15 +16,16 @@ public class PlatformMovement : MonoBehaviour {
 
     private Collider2D thisCollider;
     public Collider2D colliderToIgnore;
-
+    private Animator animator;
 
     Vector3 leftNode { get { return transform.position - new Vector3(0.5f, 1, 0); } }
     Vector3 rightNode { get { return transform.position + new Vector3(0.5f, -1, 0); } }
 
     bool isGrounded;
+    bool isJumping;
 
     SpriteRenderer spriteRenderer;
-
+    //Rigidbody2D rigidbody;
 
 
     // Use this for initialization
@@ -32,14 +33,23 @@ public class PlatformMovement : MonoBehaviour {
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         thisCollider=GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
     }
 
-    void RigidBodyUpdate(){
+    /*void RigidBodyUpdate(){
         RaycastHit2D downLeft = Physics2D.Raycast(leftNode, Vector3.down, rayDetectionDistance);
         RaycastHit2D downRight = Physics2D.Raycast(rightNode, Vector3.down, rayDetectionDistance);
 
         float horizontalDirection = Input.GetAxis("Horizontal");
-
+        if(!colliderToIgnore){
+                    //colliderToIgnore = colliderInRay;
+                }
+                else if(colliderToIgnore!=colliderInRay){
+                    Debug.Log("Ignored no more!");
+                    Physics2D.IgnoreCollision(colliderToIgnore, thisCollider,false);
+                    colliderToIgnore.gameObject.layer = 0;
+                    //colliderToIgnore = colliderInRay;
+                }
         if(isGrounded){
             if (!downLeft && !downRight)
             {
@@ -65,7 +75,7 @@ public class PlatformMovement : MonoBehaviour {
             }
         }
 
-    }
+    }*/
 
 
     // Update is called once per frame
@@ -84,6 +94,23 @@ public class PlatformMovement : MonoBehaviour {
         }*/
         float horizontalDirection = Input.GetAxis("Horizontal");
         float verticalDirection = Input.GetAxis("Vertical");
+
+        if (!isGrounded)
+        {
+            animator.SetInteger("moveState", 2);
+        }
+        else{
+            if (horizontalDirection != 0)
+            {
+                animator.SetInteger("moveState", 1);
+            }
+            else
+            {
+                animator.SetInteger("moveState", 0);
+            }
+        }
+
+
         if (horizontalDirection < 0)
         {
             if (!spriteRenderer.flipX) { spriteRenderer.flipX = true; }
