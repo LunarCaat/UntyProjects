@@ -14,6 +14,9 @@ public class PlatformMovement : MonoBehaviour {
 
     public float raydetectionDistance =0.1f;
 
+    private Collider2D thisCollider;
+    public Collider2D colliderToIgnore;
+
 
     Vector3 leftNode { get { return transform.position - new Vector3(0.5f, 1, 0); } }
     Vector3 rightNode { get { return transform.position + new Vector3(0.5f, -1, 0); } }
@@ -22,11 +25,48 @@ public class PlatformMovement : MonoBehaviour {
 
     SpriteRenderer spriteRenderer;
 
+
+
     // Use this for initialization
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        thisCollider=GetComponent<Collider2D>();
     }
+
+    void RigidBodyUpdate(){
+        RaycastHit2D downLeft = Physics2D.Raycast(leftNode, Vector3.down, rayDetectionDistance);
+        RaycastHit2D downRight = Physics2D.Raycast(rightNode, Vector3.down, rayDetectionDistance);
+
+        float horizontalDirection = Input.GetAxis("Horizontal");
+
+        if(isGrounded){
+            if (!downLeft && !downRight)
+            {
+                isGrounded = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    Debug.Log("Jump Down!");
+                    //Ignoring collision
+                    Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
+                    //Setting layer
+                    colliderToIgnore.gameObject.layer = 2;
+                    isGrounded = false;
+                }
+                else
+                {
+                    verticalSpeed = jumpForce;
+                    isGrounded = false;
+                }
+
+            }
+        }
+
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -43,6 +83,7 @@ public class PlatformMovement : MonoBehaviour {
             isGrounded = false; 
         }*/
         float horizontalDirection = Input.GetAxis("Horizontal");
+        float verticalDirection = Input.GetAxis("Vertical");
         if (horizontalDirection < 0)
         {
             if (!spriteRenderer.flipX) { spriteRenderer.flipX = true; }
@@ -81,8 +122,18 @@ public class PlatformMovement : MonoBehaviour {
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
-                verticalSpeed = jumpForce;
-                isGrounded = false;
+                if(Input.GetKey(KeyCode.DownArrow)){
+                    Debug.Log("Jump Down!");
+                    //Ignoring collision
+                    Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
+                    //Setting layer
+                    colliderToIgnore.gameObject.layer = 2;
+                    isGrounded = false;
+                }else{
+                    verticalSpeed = jumpForce;
+                    isGrounded = false;
+                }
+
             }
         }
 
@@ -102,6 +153,16 @@ public class PlatformMovement : MonoBehaviour {
                 }
                 else {
                     transform.Translate(0, -ray.distance, 0);
+                }
+                Collider2D colliderInRay = ray.collider;
+                if(!colliderToIgnore){
+                    colliderToIgnore = colliderInRay;
+                }
+                else if(colliderToIgnore!=colliderInRay){
+                    Debug.Log("Ignored no more!");
+                    Physics2D.IgnoreCollision(colliderToIgnore, thisCollider,false);
+                    colliderToIgnore.gameObject.layer = 0;
+                    colliderToIgnore = colliderInRay;
                 }
                 isGrounded = true;
                 verticalSpeed = 0;
