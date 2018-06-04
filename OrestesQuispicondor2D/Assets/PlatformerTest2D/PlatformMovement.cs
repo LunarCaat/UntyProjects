@@ -29,6 +29,7 @@ public class PlatformMovement : MonoBehaviour {
     Rigidbody2D rigidbody;
     public bool usesRigidbody;
 
+    bool isFalling = true;
     // Use this for initialization
     void Start()
     {
@@ -145,6 +146,7 @@ public class PlatformMovement : MonoBehaviour {
                 {
                     rayDetectionDistance = 0.1f;
                 }
+                isFalling = false;
             }
         }
         else {
@@ -162,6 +164,7 @@ public class PlatformMovement : MonoBehaviour {
                     //Setting layer
                     colliderToIgnore.gameObject.layer = 2;
                     isGrounded = false;
+                    isFalling = true;
                 }
                 else {
                     verticalSpeed = jumpForce;
@@ -198,29 +201,58 @@ public class PlatformMovement : MonoBehaviour {
     {
         foreach (RaycastHit2D ray in nodeRays)
         {
+
             if (ray && rayDetectionDistance > ray.distance)
             {
-                if (ray.distance <= float.Epsilon)
+                if (!isFalling)
                 {
-                    float difference = leftNode.y - ray.collider.bounds.ClosestPoint(leftNode).y;
-                    transform.Translate(0, -difference, 0);
+                    isFalling = true;
+                    if (ray.collider.bounds.Contains(leftNode)|| ray.collider.bounds.Contains(rightNode))
+                    {
+                        if (colliderToIgnore)
+                        {
+                            Physics2D.IgnoreCollision(colliderToIgnore, thisCollider, false);
+                            colliderToIgnore.gameObject.layer = 0;
+                        }
+
+                        colliderToIgnore = ray.collider;
+                        
+                        Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
+                        //Setting layer
+                        colliderToIgnore.gameObject.layer = 2;
+                        break;
+                    }
+                    
+                    
                 }
-                else {
-                    transform.Translate(0, -ray.distance, 0);
+                else
+                {
+                    if (ray.distance <= float.Epsilon)
+                    {
+                        float difference = leftNode.y - ray.collider.bounds.ClosestPoint(leftNode).y;
+                        transform.Translate(0, -difference, 0);
+                    }
+                    else {
+                        transform.Translate(0, -ray.distance, 0);
+                    }
+                    Collider2D colliderInRay = ray.collider;
+                    if (!colliderToIgnore)
+                    {
+                        colliderToIgnore = colliderInRay;
+                    }
+                    else if (colliderToIgnore != colliderInRay)
+                    {
+                        Debug.Log("Ignored no more!");
+                        Physics2D.IgnoreCollision(colliderToIgnore, thisCollider, false);
+                        colliderToIgnore.gameObject.layer = 0;
+                        colliderToIgnore = colliderInRay;
+                    }
+                    isGrounded = true;
+                    isFalling = false;
+                    verticalSpeed = 0;
+                    break;
                 }
-                Collider2D colliderInRay = ray.collider;
-                if(!colliderToIgnore){
-                    colliderToIgnore = colliderInRay;
-                }
-                else if(colliderToIgnore!=colliderInRay){
-                    Debug.Log("Ignored no more!");
-                    Physics2D.IgnoreCollision(colliderToIgnore, thisCollider,false);
-                    colliderToIgnore.gameObject.layer = 0;
-                    colliderToIgnore = colliderInRay;
-                }
-                isGrounded = true;
-                verticalSpeed = 0;
-                break;
+                
             }
         }
     }
