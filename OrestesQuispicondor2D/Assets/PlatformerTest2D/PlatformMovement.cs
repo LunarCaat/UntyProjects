@@ -120,7 +120,7 @@ public class PlatformMovement : MonoBehaviour {
         if (horizontalDirection < 0)
         {
             if (!spriteRenderer.flipX) { spriteRenderer.flipX = true; }
-            if (sideLeft)
+            if (sideLeft&&isGrounded)
             {
                 horizontalDirection = 0;
             }
@@ -128,7 +128,7 @@ public class PlatformMovement : MonoBehaviour {
         else if (horizontalDirection > 0)
         {
             if (spriteRenderer.flipX) { spriteRenderer.flipX = false; }
-            if (sideRight)
+            if (sideRight && isGrounded)
             {
                 horizontalDirection = 0;
             }
