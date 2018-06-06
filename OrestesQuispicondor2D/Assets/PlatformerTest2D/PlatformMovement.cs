@@ -231,6 +231,7 @@ public class PlatformMovement : MonoBehaviour {
                     {
                         float difference = leftNode.y - ray.collider.bounds.ClosestPoint(leftNode).y;
                         transform.Translate(0, -difference, 0);
+                        Debug.Log("Success!" + ray.collider.name);
                     }
                     else {
                         transform.Translate(0, -ray.distance, 0);
@@ -249,6 +250,7 @@ public class PlatformMovement : MonoBehaviour {
                     }
                     isGrounded = true;
                     isFalling = false;
+                    Debug.Log("Stopped!" + ray.collider.name);
                     verticalSpeed = 0;
                     break;
                 }

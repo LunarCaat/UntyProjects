@@ -1,0 +1,3 @@
+Los pivotes se encuentra en unidades normalizadas
+Mientras, los valores como left top y bottom se encuentran en unidades
+constantes
