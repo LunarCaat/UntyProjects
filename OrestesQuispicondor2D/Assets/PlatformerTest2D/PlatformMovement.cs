@@ -29,7 +29,9 @@ public class PlatformMovement : MonoBehaviour {
     Rigidbody2D rigidbody;
     public bool usesRigidbody;
 
+    //Inicializar estas variables antes
     bool isFalling = true;
+    bool stoppedByWall = false;
     // Use this for initialization
     void Start()
     {
@@ -116,21 +118,33 @@ public class PlatformMovement : MonoBehaviour {
             }
         }
 
-
+        
         if (horizontalDirection < 0)
         {
             if (!spriteRenderer.flipX) { spriteRenderer.flipX = true; }
-            if (sideLeft&&isGrounded)
+            if (sideLeft && !(sideLeft.collider.OverlapPoint(leftNode + new Vector3(0, 0.1f, 0))))
+            //if (sideLeft&&isGrounded)
             {
+                stoppedByWall = true;
                 horizontalDirection = 0;
+            }
+            else
+            {
+                stoppedByWall = false;
             }
         }
         else if (horizontalDirection > 0)
         {
             if (spriteRenderer.flipX) { spriteRenderer.flipX = false; }
-            if (sideRight && isGrounded)
+            if (sideRight&&!(sideRight.collider.OverlapPoint(rightNode + new Vector3(0, 0.1f, 0))))
+            //if (sideRight && isGrounded)
             {
+                stoppedByWall = true;
                 horizontalDirection = 0;
+            }
+            else
+            {
+                stoppedByWall = false;
             }
         }
         if (!isGrounded)
@@ -165,6 +179,7 @@ public class PlatformMovement : MonoBehaviour {
                     colliderToIgnore.gameObject.layer = 2;
                     isGrounded = false;
                     isFalling = true;
+                    stoppedByWall = false;
                 }
                 else {
                     verticalSpeed = jumpForce;
@@ -176,7 +191,7 @@ public class PlatformMovement : MonoBehaviour {
 
 
         //Update horizontalSpeed if grounded
-        if (isGrounded)
+        if (isGrounded || (stoppedByWall ))
         {
             horizontalSpeed = horizontalDirection * horizontalMaxSpeed;
         }
@@ -207,7 +222,7 @@ public class PlatformMovement : MonoBehaviour {
                 if (!isFalling)
                 {
                     isFalling = true;
-                    if (ray.collider.bounds.Contains(leftNode)|| ray.collider.bounds.Contains(rightNode))
+                    if (ray.collider.OverlapPoint(leftNode)|| ray.collider.OverlapPoint(rightNode))
                     {
                         if (colliderToIgnore)
                         {
@@ -218,8 +233,10 @@ public class PlatformMovement : MonoBehaviour {
                         colliderToIgnore = ray.collider;
                         
                         Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
+                        Debug.Log("Ignored by falling!" + ray.collider.name);
                         //Setting layer
                         colliderToIgnore.gameObject.layer = 2;
+                        stoppedByWall = false;
                         break;
                     }
                     
