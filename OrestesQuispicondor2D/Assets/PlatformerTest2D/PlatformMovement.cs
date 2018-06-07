@@ -149,6 +149,7 @@ public class PlatformMovement : MonoBehaviour {
         }
         if (!isGrounded)
         {
+            
             verticalSpeed -= gravity * Time.deltaTime;
             if (verticalSpeed < 0)
             {
@@ -172,14 +173,20 @@ public class PlatformMovement : MonoBehaviour {
             {
                 if (Input.GetKey(KeyCode.DownArrow))
                 {
-                    Debug.Log("Jump Down!");
-                    //Ignoring collision
-                    Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
-                    //Setting layer
-                    colliderToIgnore.gameObject.layer = 2;
-                    isGrounded = false;
-                    isFalling = true;
-                    stoppedByWall = false;
+                    if ((Physics2D.RaycastAll(leftNode, Vector3.down, 200).Length>1 || Physics2D.RaycastAll(rightNode, Vector3.down, 200).Length > 1) && horizontalDirection == 0)
+                    {
+                        Debug.Log("Jump Down!");
+                        //Ignoring collision
+                        Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
+                        //Setting layer
+                        colliderToIgnore.gameObject.layer = 2;
+                        isGrounded = false;
+                        isFalling = true;
+                        stoppedByWall = false;
+                    }
+                    
+
+                    
                 }
                 else {
                     verticalSpeed = jumpForce;
@@ -190,7 +197,7 @@ public class PlatformMovement : MonoBehaviour {
         }
 
 
-        //Update horizontalSpeed if grounded
+        //Update horizontalSpeed if grounded 
         if (isGrounded || (stoppedByWall ))
         {
             horizontalSpeed = horizontalDirection * horizontalMaxSpeed;
