@@ -30,7 +30,10 @@ public class PlatformMovement : MonoBehaviour {
     public bool usesRigidbody;
 
     //Inicializar estas variables antes
+    [SerializeField]
     bool isFalling = true;
+
+    bool isFallingFirstTime=false;
     bool stoppedByWall = false;
     // Use this for initialization
     void Start()
@@ -153,14 +156,23 @@ public class PlatformMovement : MonoBehaviour {
             verticalSpeed -= gravity * Time.deltaTime;
             if (verticalSpeed < 0)
             {
+                if (!isFalling) {
+                    isFallingFirstTime = true;
+                    isFalling = true;
+                }
                 rayDetectionDistance = -verticalSpeed * Time.deltaTime;
                 CheckVerticalClamp(new RaycastHit2D[] { downLeft, downRight });
+                isFallingFirstTime = false;
+
+
+
             }
             else {
                 if (rayDetectionDistance != 0.1f)
                 {
                     rayDetectionDistance = 0.1f;
                 }
+                isFallingFirstTime = false;
                 isFalling = false;
             }
         }
@@ -226,17 +238,17 @@ public class PlatformMovement : MonoBehaviour {
 
             if (ray && rayDetectionDistance > ray.distance)
             {
-                if (!isFalling)
+                if (isFallingFirstTime)
                 {
-                    isFalling = true;
-                    if (ray.collider.OverlapPoint(leftNode)|| ray.collider.OverlapPoint(rightNode))
+                    
+                    if ((ray.collider.OverlapPoint(leftNode)|| ray.collider.OverlapPoint(rightNode))&&ray.collider!=colliderToIgnore)
                     {
                         if (colliderToIgnore)
                         {
                             Physics2D.IgnoreCollision(colliderToIgnore, thisCollider, false);
                             colliderToIgnore.gameObject.layer = 0;
                         }
-
+                        Debug.Log("Previous collider"+colliderToIgnore.name);
                         colliderToIgnore = ray.collider;
                         
                         Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
