@@ -19,8 +19,8 @@ public class PlatformMovement : MonoBehaviour {
     public Collider2D colliderToIgnore;
     private Animator animator;
 
-    Vector3 leftNode { get { return transform.position - new Vector3(0.5f, 1, 0); } }
-    Vector3 rightNode { get { return transform.position + new Vector3(0.5f, -1, 0); } }
+    Vector3 leftNode { get { return transform.position - new Vector3(0.3f, 1, 0); } }
+    Vector3 rightNode { get { return transform.position + new Vector3(0.3f, -1, 0); } }
     [SerializeField]
     bool isGrounded;
     bool isJumping;
