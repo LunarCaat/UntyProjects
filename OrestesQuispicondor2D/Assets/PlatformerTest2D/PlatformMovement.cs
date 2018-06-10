@@ -181,30 +181,50 @@ public class PlatformMovement : MonoBehaviour {
             {
                 isGrounded = false;
             }
-            else if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (Input.GetKey(KeyCode.DownArrow))
+            else {
+                Collider2D colliderInRay = null;
+                colliderInRay = horizontalDirection > 0 ? downLeft.collider : downRight.collider;
+
+                //Codigo de asignar y limpiar flag de ignorar en el collider anterior
+                if (!colliderToIgnore)
                 {
-                    if ((Physics2D.RaycastAll(leftNode, Vector3.down, 200).Length>1 || Physics2D.RaycastAll(rightNode, Vector3.down, 200).Length > 1) && horizontalDirection == 0)
+                    colliderToIgnore = colliderInRay;
+                }
+                else if (colliderToIgnore != colliderInRay)
+                {
+                    Debug.Log("Ignored no more!");
+                    Physics2D.IgnoreCollision(colliderToIgnore, thisCollider, false);
+                    colliderToIgnore.gameObject.layer = 0;
+                    colliderToIgnore = colliderInRay;
+                }
+
+
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    if (Input.GetKey(KeyCode.DownArrow))
                     {
-                        Debug.Log("Jump Down!");
-                        //Ignoring collision
-                        Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
-                        //Setting layer
-                        colliderToIgnore.gameObject.layer = 2;
-                        isGrounded = false;
-                        isFalling = true;
-                        stoppedByWall = false;
+                        if ((Physics2D.RaycastAll(leftNode, Vector3.down, 200).Length > 1 || Physics2D.RaycastAll(rightNode, Vector3.down, 200).Length > 1) && horizontalDirection == 0)
+                        {
+                            Debug.Log("Jump Down!");
+                            //Ignoring collision
+                            Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
+                            //Setting layer
+                            colliderToIgnore.gameObject.layer = 2;
+                            isGrounded = false;
+                            isFalling = true;
+                            stoppedByWall = false;
+                        }
+
+
+
                     }
-                    
+                    else {
+                        verticalSpeed = jumpForce;
+                        isGrounded = false;
+                    }
 
-                    
                 }
-                else {
-                    verticalSpeed = jumpForce;
-                    isGrounded = false;
-                }
-
             }
         }
 
