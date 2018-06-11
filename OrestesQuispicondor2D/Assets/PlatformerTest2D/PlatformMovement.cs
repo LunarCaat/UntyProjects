@@ -34,6 +34,7 @@ public class PlatformMovement : MonoBehaviour {
     bool isFalling = true;
 
     bool isFallingFirstTime=false;
+    [SerializeField]
     bool stoppedByWall = false;
     // Use this for initialization
     void Start()
@@ -121,11 +122,11 @@ public class PlatformMovement : MonoBehaviour {
             }
         }
 
-        
+
         if (horizontalDirection < 0)
         {
             if (!spriteRenderer.flipX) { spriteRenderer.flipX = true; }
-            if (horizontalSpeed < 0 && sideLeft && !(sideLeft.collider.OverlapPoint(leftNode + new Vector3(0, 0.1f, 0))))
+            if (sideLeft && !(sideLeft.collider.OverlapPoint(leftNode + new Vector3(0, 0.1f, 0))))
             //if (sideLeft&&isGrounded)
             {
                 stoppedByWall = true;
@@ -133,13 +134,15 @@ public class PlatformMovement : MonoBehaviour {
             }
             else
             {
+                if(stoppedByWall)
+                Debug.Log("Stopped by left wall!");
                 stoppedByWall = false;
             }
         }
         else if (horizontalDirection > 0)
         {
             if (spriteRenderer.flipX) { spriteRenderer.flipX = false; }
-            if (horizontalSpeed > 0 && sideRight && !(sideRight.collider.OverlapPoint(rightNode + new Vector3(0, 0.1f, 0))))
+            if (sideRight && !(sideRight.collider.OverlapPoint(rightNode + new Vector3(0, 0.1f, 0))))
             //if (sideRight && isGrounded)
             {
                 stoppedByWall = true;
@@ -147,6 +150,7 @@ public class PlatformMovement : MonoBehaviour {
             }
             else
             {
+                Debug.Log("Stopped by right wall!");
                 stoppedByWall = false;
             }
         }
