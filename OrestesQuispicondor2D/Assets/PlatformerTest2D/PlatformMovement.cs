@@ -183,8 +183,16 @@ public class PlatformMovement : MonoBehaviour {
             }
             else {
                 Collider2D colliderInRay = null;
-                colliderInRay = horizontalDirection > 0 ? downLeft.collider : downRight.collider;
-
+                if (downLeft && downRight) {
+                    colliderInRay = horizontalDirection > 0 ? downRight.collider : downLeft.collider;
+                }
+                else
+                {
+                    colliderInRay = !downLeft ? downRight.collider : downLeft.collider;
+                }
+                //if (!colliderInRay) Debug.Log("Collider is null!");
+                //if (!downRight.collider && !downLeft.collider) Debug.Log("Both colliders are null");
+                
                 //Codigo de asignar y limpiar flag de ignorar en el collider anterior
                 if (!colliderToIgnore)
                 {
@@ -204,12 +212,13 @@ public class PlatformMovement : MonoBehaviour {
                 {
                     if (Input.GetKey(KeyCode.DownArrow))
                     {
-                        if ((Physics2D.RaycastAll(leftNode, Vector3.down, 200).Length > 1 || Physics2D.RaycastAll(rightNode, Vector3.down, 200).Length > 1) && horizontalDirection == 0)
+                        if ((Physics2D.RaycastAll(leftNode, Vector3.down, 200).Length > 1 || Physics2D.RaycastAll(rightNode, Vector3.down, 200).Length > 1))
                         {
                             Debug.Log("Jump Down!");
                             //Ignoring collision
-                            Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
+                            //Physics2D.IgnoreCollision(colliderToIgnore, thisCollider);
                             //Setting layer
+                            horizontalSpeed = 0;
                             colliderToIgnore.gameObject.layer = 2;
                             isGrounded = false;
                             isFalling = true;
