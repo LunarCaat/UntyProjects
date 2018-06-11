@@ -101,7 +101,7 @@ public class PlatformMovement : MonoBehaviour {
         } else { 
             isGrounded = false; 
         }*/
-        
+
         float horizontalDirection = Input.GetAxis("Horizontal");
         float verticalDirection = Input.GetAxis("Vertical");
         float horizontalVelocity;
@@ -126,7 +126,9 @@ public class PlatformMovement : MonoBehaviour {
         if (horizontalDirection < 0)
         {
             if (!spriteRenderer.flipX) { spriteRenderer.flipX = true; }
-            if (sideLeft && !(sideLeft.collider.OverlapPoint(leftNode + new Vector3(0, 0.1f, 0))))
+
+            //if (isGrounded)
+            if ((horizontalSpeed < 0||stoppedByWall)&&sideLeft && !(sideLeft.collider.OverlapPoint(leftNode + new Vector3(0, 0.1f, 0))))
             //if (sideLeft&&isGrounded)
             {
                 stoppedByWall = true;
@@ -134,15 +136,16 @@ public class PlatformMovement : MonoBehaviour {
             }
             else
             {
-                if(stoppedByWall)
-                Debug.Log("Stopped by left wall!");
+                if (stoppedByWall)
+                    Debug.Log("Stopped by left wall!");
                 stoppedByWall = false;
             }
         }
         else if (horizontalDirection > 0)
         {
             if (spriteRenderer.flipX) { spriteRenderer.flipX = false; }
-            if (sideRight && !(sideRight.collider.OverlapPoint(rightNode + new Vector3(0, 0.1f, 0))))
+            //if (isGrounded)
+            if ((horizontalSpeed > 0 || stoppedByWall)&&sideRight && !(sideRight.collider.OverlapPoint(rightNode + new Vector3(0, 0.1f, 0))))
             //if (sideRight && isGrounded)
             {
                 stoppedByWall = true;
@@ -156,7 +159,7 @@ public class PlatformMovement : MonoBehaviour {
         }
         if (!isGrounded)
         {
-            
+
             verticalSpeed -= gravity * Time.deltaTime;
             if (verticalSpeed < 0)
             {
@@ -196,7 +199,7 @@ public class PlatformMovement : MonoBehaviour {
                 }
                 //if (!colliderInRay) Debug.Log("Collider is null!");
                 //if (!downRight.collider && !downLeft.collider) Debug.Log("Both colliders are null");
-                
+
                 //Codigo de asignar y limpiar flag de ignorar en el collider anterior
                 if (!colliderToIgnore)
                 {
@@ -240,6 +243,41 @@ public class PlatformMovement : MonoBehaviour {
                 }
             }
         }
+
+        //if (!isGrounded)
+        //{
+        //    if (horizontalSpeed < 0)
+        //    {
+        //        if (sideLeft && !(sideLeft.collider.OverlapPoint(leftNode + new Vector3(0, 0.1f, 0))))
+        //        //if (sideLeft&&isGrounded)
+        //        {
+        //            stoppedByWall = true;
+        //            horizontalDirection = 0;
+        //        }
+        //        else
+        //        {
+        //            if (stoppedByWall)
+        //                Debug.Log("Stopped by left wall!");
+        //            stoppedByWall = false;
+        //        }
+        //    }
+        //    else if (horizontalSpeed > 0)
+        //    {
+        //        if (sideRight && !(sideRight.collider.OverlapPoint(rightNode + new Vector3(0, 0.1f, 0))))
+        //        //if (sideRight && isGrounded)
+        //        {
+        //            stoppedByWall = true;
+        //            horizontalDirection = 0;
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("Stopped by right wall!");
+        //            stoppedByWall = false;
+        //        }
+        //    }
+        //}
+        
+        
 
 
         //Update horizontalSpeed if grounded 
