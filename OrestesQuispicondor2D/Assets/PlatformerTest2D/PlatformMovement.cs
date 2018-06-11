@@ -125,7 +125,7 @@ public class PlatformMovement : MonoBehaviour {
         if (horizontalDirection < 0)
         {
             if (!spriteRenderer.flipX) { spriteRenderer.flipX = true; }
-            if (sideLeft && !(sideLeft.collider.OverlapPoint(leftNode + new Vector3(0, 0.1f, 0))))
+            if (horizontalSpeed < 0 && sideLeft && !(sideLeft.collider.OverlapPoint(leftNode + new Vector3(0, 0.1f, 0))))
             //if (sideLeft&&isGrounded)
             {
                 stoppedByWall = true;
@@ -139,7 +139,7 @@ public class PlatformMovement : MonoBehaviour {
         else if (horizontalDirection > 0)
         {
             if (spriteRenderer.flipX) { spriteRenderer.flipX = false; }
-            if (sideRight&&!(sideRight.collider.OverlapPoint(rightNode + new Vector3(0, 0.1f, 0))))
+            if (horizontalSpeed > 0 && sideRight && !(sideRight.collider.OverlapPoint(rightNode + new Vector3(0, 0.1f, 0))))
             //if (sideRight && isGrounded)
             {
                 stoppedByWall = true;
