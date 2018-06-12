@@ -11,7 +11,13 @@ public class Timer : MonoBehaviour {
     private bool stopped=false;
     public Text timerText;
 
-    // Use this for initialization
+    public float timePassed
+    {
+        get
+        { return (minutesLeft * 60 + secondsLeft) - timeLeft; }
+    }
+
+            // Use this for initialization
     void Start() {
         timeLeft = minutesLeft*60 + secondsLeft;
     }
