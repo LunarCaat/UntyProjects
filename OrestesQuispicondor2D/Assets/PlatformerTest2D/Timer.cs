@@ -49,6 +49,6 @@ public class Timer : MonoBehaviour {
     }
     private void TimeRanOut()
     {
-        
+        PlatformManager.state = PlatformManager.GameState.GAMEOVER;
     }
 }

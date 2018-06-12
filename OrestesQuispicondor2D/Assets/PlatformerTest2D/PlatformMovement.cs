@@ -293,13 +293,17 @@ public class PlatformMovement : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (usesRigidbody)
+        if(PlatformManager.state == PlatformManager.GameState.NOT_FINISHED)
         {
-            RigidBodyUpdate();
+            if (usesRigidbody)
+            {
+                RigidBodyUpdate();
+            }
+            else {
+                TransformUpdate();
+            }
         }
-        else {
-            TransformUpdate();
-        }
+        
     }
 
     void CheckVerticalClamp(RaycastHit2D[] nodeRays)
