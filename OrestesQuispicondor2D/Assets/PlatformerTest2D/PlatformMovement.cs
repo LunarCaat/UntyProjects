@@ -219,7 +219,7 @@ public class PlatformMovement : MonoBehaviour {
                 {
                     if (Input.GetKey(KeyCode.DownArrow))
                     {
-                        if ((Physics2D.RaycastAll(leftNode, Vector3.down, 200).Length > 1 || Physics2D.RaycastAll(rightNode, Vector3.down, 200).Length > 1))
+                        if ((Physics2D.RaycastAll(leftNode, Vector3.down, 6).Length > 1 || Physics2D.RaycastAll(rightNode, Vector3.down, 6).Length > 1))
                         {
                             Debug.Log("Jump Down!");
                             //Ignoring collision
