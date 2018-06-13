@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/PlatformerTest2D/MainMenu.unity
+    path: Assets/PlatformerTest2D/Scenes/MainMenu.unity
     guid: 4046081008c35ef4c947828b75cd2ae5
   - enabled: 1
-    path: Assets/PlatformerTest2D/PlatformerTest.unity
+    path: Assets/PlatformerTest2D/Scenes/PlatformerTest.unity
     guid: a8c2a86e029584cc48bcbb1a3ddad40b
   m_configObjects: {}
