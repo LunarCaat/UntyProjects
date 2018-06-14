@@ -7,16 +7,19 @@ public class CamMovement : MonoBehaviour {
     public Transform lookTarget;
     public float targetHeight;
     public Vector3 cameraPoint;
+    Vector3 initialDirection;
 	// Use this for initialization
 	void Start () {
-		
+        initialDirection = lookTarget.forward;
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        
+        Quaternion cameraRotation = Quaternion.FromToRotation(initialDirection, lookTarget.forward);
+        Matrix4x4 rotationMatrix = Matrix4x4.Rotate(cameraRotation);
+        Vector3 rotatedCameraPoint = rotationMatrix.MultiplyPoint3x4(cameraPoint);
 
-        transform.position = Vector3.MoveTowards(transform.position, lookTarget.position + cameraPoint, 5f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, lookTarget.position + rotatedCameraPoint, 5f * Time.deltaTime);
         transform.LookAt(lookTarget);
 
 
