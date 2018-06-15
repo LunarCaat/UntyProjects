@@ -16,15 +16,18 @@ public class PlatformerMovement : MonoBehaviour {
     public float angularSpeed = 85f;
     Vector3 leftNode { get { return transform.position - new Vector3(0.3f, 0.9f, 0); } }
     Vector3 rightNode { get { return transform.position + new Vector3(0.3f, -0.9f, 0); } }
+
+    public SwitchControl currentSwitch;
+
+
 	// Use this for initialization
 	void Start () {
 		
 	}
 
     // Update is called once per frame
-    void Update() {
-        bool downLeft = Physics.Raycast(leftNode, Vector3.down, rayDetectionDistance);
-        bool downRight = Physics.Raycast(rightNode, Vector3.down, rayDetectionDistance);
+    void LateUpdate() {
+        
         movement = transform.position;
         rotation = rigidbody3D.rotation;
         float horizontalDirection = Input.GetAxis("Horizontal");
@@ -42,6 +45,16 @@ public class PlatformerMovement : MonoBehaviour {
             movement += (transform.forward * verticalDirection + transform.right * horizontalDirection).normalized * horizontalSpeed * Time.deltaTime;
         }
 
+
+
+
+        rigidbody3D.MovePosition(movement);
+        rigidbody3D.MoveRotation(rotation);
+	}
+	private void Update()
+	{
+        bool downLeft = Physics.Raycast(leftNode, Vector3.down, rayDetectionDistance);
+        bool downRight = Physics.Raycast(rightNode, Vector3.down, rayDetectionDistance);
         if (isGrounded)
         {
             Debug.Log("It's Grounded");
@@ -68,17 +81,35 @@ public class PlatformerMovement : MonoBehaviour {
                 isGrounded = true;
             }
         }
+        //El orden de las condiciones importa ya que puede ayudar a evitar comparaciones mas costosas
+        //Tambien en el caso de getcomponent , si la condicion antes es != null, no importa
+        //que no exista la referencia ya que ni lo va a considerar
+        if(currentSwitch!=null &&Input.GetKeyDown(KeyCode.E)){
+            currentSwitch.Activate();
+        }
 
-
-        rigidbody3D.MovePosition(movement);
-        rigidbody3D.MoveRotation(rotation);
 	}
 
-    void OnDrawGizmos()
+	void OnDrawGizmos()
     {
         Gizmos.DrawSphere(leftNode, 0.2f);
         Gizmos.DrawSphere(rightNode, 0.2f);
         Gizmos.color = Color.white;
         Gizmos.DrawRay(leftNode, Vector3.down * rayDetectionDistance);
+    }
+
+
+	private void OnTriggerEnter(Collider other)
+	{
+        if(other.CompareTag("Switch")){
+            currentSwitch=other.GetComponent<SwitchControl>();
+        }
+	}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Switch"))
+        {
+            currentSwitch = null;
+        }
     }
 }
