@@ -7,6 +7,7 @@ public class CamMovement : MonoBehaviour {
     public Transform lookTarget;
     public float targetHeight;
     public Vector3 cameraPoint;
+    public float speed=5f;
     Vector3 initialDirection;
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,7 @@ public class CamMovement : MonoBehaviour {
         Matrix4x4 rotationMatrix = Matrix4x4.Rotate(cameraRotation);
         Vector3 rotatedCameraPoint = rotationMatrix.MultiplyPoint3x4(cameraPoint);
 
-        transform.position = Vector3.MoveTowards(transform.position, lookTarget.position + rotatedCameraPoint, 5f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, lookTarget.position + rotatedCameraPoint, speed * Time.deltaTime);
         transform.LookAt(lookTarget);
 
 

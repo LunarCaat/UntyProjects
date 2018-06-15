@@ -7,10 +7,13 @@ public class PlatformerMovement : MonoBehaviour {
 
     public float horizontalSpeed;
     Vector3 movement;
+
     public Rigidbody rigidbody3D;
     public float impulseValue;
     public bool isGrounded;
+    Quaternion rotation;
     public float rayDetectionDistance = 0.15f;
+    public float angularSpeed = 85f;
     Vector3 leftNode { get { return transform.position - new Vector3(0.3f, 0.9f, 0); } }
     Vector3 rightNode { get { return transform.position + new Vector3(0.3f, -0.9f, 0); } }
 	// Use this for initialization
@@ -23,16 +26,20 @@ public class PlatformerMovement : MonoBehaviour {
         bool downLeft = Physics.Raycast(leftNode, Vector3.down, rayDetectionDistance);
         bool downRight = Physics.Raycast(rightNode, Vector3.down, rayDetectionDistance);
         movement = transform.position;
+        rotation = rigidbody3D.rotation;
         float horizontalDirection = Input.GetAxis("Horizontal");
         float verticalDirection = Input.GetAxis("Vertical");
 
         if (Input.GetKey(KeyCode.J)) {
-            transform.Rotate(Vector3.up * 100f * Time.deltaTime);
+            rotation *= Quaternion.Euler(Vector3.up * -angularSpeed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.K))
+        {
+            rotation *= Quaternion.Euler(Vector3.up * angularSpeed * Time.deltaTime);
         }
 
-
         if (horizontalDirection != 0 || verticalDirection != 0) {
-            movement += (Vector3.forward * verticalDirection + Vector3.right * horizontalDirection) * horizontalSpeed * Time.deltaTime;
+            movement += (transform.forward * verticalDirection + transform.right * horizontalDirection).normalized * horizontalSpeed * Time.deltaTime;
         }
 
         if (isGrounded)
@@ -43,7 +50,7 @@ public class PlatformerMovement : MonoBehaviour {
 
                 isGrounded = false;
             }
-            else if (Input.GetKeyDown(KeyCode.H))
+            else if (Input.GetKeyDown(KeyCode.Space))
 
             {
                 Debug.Log("Jump!");
@@ -64,6 +71,7 @@ public class PlatformerMovement : MonoBehaviour {
 
 
         rigidbody3D.MovePosition(movement);
+        rigidbody3D.MoveRotation(rotation);
 	}
 
     void OnDrawGizmos()
