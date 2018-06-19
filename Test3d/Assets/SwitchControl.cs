@@ -25,7 +25,7 @@ public class SwitchControl : MonoBehaviour {
 
     IEnumerator MovePlatformToTargetPoint(){
         while(platform.position!=targetPoint){
-            platform.position = Vector3.MoveTowards(transform.position, targetPoint, transitionSpeed * Time.deltaTime);
+            platform.position = Vector3.MoveTowards(platform.position, targetPoint, transitionSpeed * Time.deltaTime);
             yield return null;
         }
 
