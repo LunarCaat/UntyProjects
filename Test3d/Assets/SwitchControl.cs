@@ -16,6 +16,8 @@ public class SwitchControl : MonoBehaviour {
     public Color disabledColor;
     Renderer objectRenderer;
 
+    public SwitchControl alternateSwitch; 
+
     delegate void SwitchSetDelegate(bool setValue);  
 
 	private void Awake()
@@ -29,6 +31,9 @@ public class SwitchControl : MonoBehaviour {
 		
 	}
     public void SetEnabled (bool enabledState){
+        if(alternateSwitch !=null){
+            alternateSwitch.SetEnabled(enabledState);
+        }
         objectRenderer.material.color = enabledState ? enabledColor : disabledColor;
         _enabled = enabledState;
     }
@@ -55,13 +60,19 @@ public class SwitchControl : MonoBehaviour {
 
 
     IEnumerator MovePlatformToTargetPoint(SwitchSetDelegate callback, bool setValue =false){
-        while(platform.position!=targetPoint){
-            platform.position = Vector3.MoveTowards(platform.position, targetPoint, transitionSpeed * Time.deltaTime);
+        Vector3 nextTarget = platform.position;
+        Rigidbody platformRigidBody = platform.GetComponent<Rigidbody>();
+        while(platformRigidBody.position!=targetPoint){
+            platformRigidBody.MovePosition(Vector3.MoveTowards(platformRigidBody.position, targetPoint, transitionSpeed * Time.deltaTime));
+            //platform.position = Vector3.MoveTowards(platform.position, targetPoint, transitionSpeed * Time.deltaTime);
             yield return null;
         }
-        if(callback!=null){
-            callback.Invoke(setValue);
-        }
+        targetPoint = nextTarget;
+        if (alternateSwitch != null) { alternateSwitch.targetPoint = nextTarget; }
+        SetEnabled(true);
+        //if(callback!=null){
+        //    callback.Invoke(setValue);
+        //}
         yield return null;
     }
 

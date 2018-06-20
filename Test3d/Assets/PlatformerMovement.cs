@@ -18,8 +18,14 @@ public class PlatformerMovement : MonoBehaviour {
     Vector3 rightNode { get { return transform.position + new Vector3(0.3f, -0.9f, 0); } }
 
     public SwitchControl currentSwitch;
+    public Transform movingPlatform;
+
+
     public Animator anim2D;
     public SpriteRenderer spriteRenderer;
+
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -128,6 +134,8 @@ public class PlatformerMovement : MonoBehaviour {
 	{
         if(other.CompareTag("Switch")){
             currentSwitch=other.GetComponent<SwitchControl>();
+        } else if(other.CompareTag("MovingPlatform")){
+            movingPlatform = other.transform;
         }
 	}
     private void OnTriggerExit(Collider other)
