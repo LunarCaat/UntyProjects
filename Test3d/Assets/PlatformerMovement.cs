@@ -24,7 +24,7 @@ public class PlatformerMovement : MonoBehaviour {
     public Animator anim2D;
     public SpriteRenderer spriteRenderer;
 
-
+    Vector3 lastPlatformPos;
 
 
 	// Use this for initialization
@@ -34,7 +34,7 @@ public class PlatformerMovement : MonoBehaviour {
 	}
 
     // Update is called once per frame
-    void LateUpdate() {
+    void FixedUpdate() {
         
         movement = transform.position;
         rotation = rigidbody3D.rotation;
@@ -73,7 +73,10 @@ public class PlatformerMovement : MonoBehaviour {
                 
                 
         }
-
+        if(movingPlatform!=null){
+            Debug.Log((movingPlatform.position - lastPlatformPos).magnitude);
+            movement += movingPlatform.position - lastPlatformPos;
+        }
 
 
 
@@ -120,6 +123,11 @@ public class PlatformerMovement : MonoBehaviour {
         }
 
 	}
+
+	/*private void LateUpdate()
+	{
+		
+	}*/
 
 	void OnDrawGizmos()
     {

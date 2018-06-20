@@ -1,1 +1,3 @@
 Revisar Action y delegates
+
+Revisar código del profesor.
