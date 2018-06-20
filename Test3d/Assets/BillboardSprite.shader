@@ -1,4 +1,4 @@
-﻿Shader "Custom/BillboardSprite"
+﻿    Shader "Custom/BillboardSprite"
 {
 	Properties
 	{
@@ -6,6 +6,8 @@
 	_Color("Tint", Color) = (1,1,1,1)
 		//_Time ("Time", Float) = 0
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
+        _ScaleX ("Scale X", Float) = 1.0
+        _ScaleY ("Scale Y", Float) = 1.0
 	}
 
 		SubShader
@@ -55,6 +57,8 @@
 	};
 
 	fixed4 _Color;
+    float _ScaleX;
+    float _ScaleY;
 
 	v2f vert(appdata_t IN)
 	{
@@ -69,7 +73,7 @@
 		OUT.vertex = mul(UNITY_MATRIX_P,
 			mul(UNITY_MATRIX_MV, float4(0.0, 0.0, 0.0, 1.0))
 			+ float4(IN.vertex.x, IN.vertex.y, 0.0, 0.0)
-			* float4(1.0, 1.0, 1.0, 1.0));
+			* float4(_ScaleX,_ScaleY, 1.0, 1.0));
 
 		//                OUT.vertex = UnityPixelSnap (OUT.vertex);
 		//    #endif

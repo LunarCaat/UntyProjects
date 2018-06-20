@@ -18,11 +18,13 @@ public class PlatformerMovement : MonoBehaviour {
     Vector3 rightNode { get { return transform.position + new Vector3(0.3f, -0.9f, 0); } }
 
     public SwitchControl currentSwitch;
-
+    public Animator anim2D;
+    public SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 	void Start () {
-		
+        
+
 	}
 
     // Update is called once per frame
@@ -42,7 +44,28 @@ public class PlatformerMovement : MonoBehaviour {
         }
 
         if (horizontalDirection != 0 || verticalDirection != 0) {
+            
             movement += (transform.forward * verticalDirection + transform.right * horizontalDirection).normalized * horizontalSpeed * Time.deltaTime;
+        }
+        if(!isGrounded)
+            anim2D.SetInteger("moveState", 2);
+        else{
+            anim2D.SetInteger("moveState", 1);
+            if(horizontalDirection != 0 || verticalDirection != 0){
+                if (horizontalDirection < 0)
+                {
+                    spriteRenderer.flipX = true;
+                }
+                else
+                {
+                    spriteRenderer.flipX = false;
+                }
+            }else{
+                anim2D.SetInteger("moveState", 0);
+            }
+
+                
+                
         }
 
 
@@ -62,6 +85,7 @@ public class PlatformerMovement : MonoBehaviour {
             {
 
                 isGrounded = false;
+                //anim2D.SetInteger("moveState", 2);
             }
             else if (Input.GetKeyDown(KeyCode.Space))
 
@@ -70,6 +94,7 @@ public class PlatformerMovement : MonoBehaviour {
                 //verticalSpeed = impulseValue;
                 rigidbody3D.AddForce(Vector3.up * impulseValue, ForceMode.Impulse);
                 isGrounded = false;
+                //anim2D.SetInteger("moveState", 2);
             }
         }
         else
