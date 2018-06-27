@@ -1,0 +1,8 @@
+Para colisiones con mas de un collider para el ground check
+se puede:
+-Hacer un contador de pisos que se esta tocando
+-Guardar en un arreglo la referencia de cada collider.
+
+Arreglar código del movement.
+
+Blend tree para saber si esta corriendo.

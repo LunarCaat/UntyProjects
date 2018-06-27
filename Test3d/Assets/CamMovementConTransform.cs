@@ -19,6 +19,8 @@ public class CamMovementConTransform : MonoBehaviour {
     void LateUpdate()
     {
         localPoint = lookTarget.position+((lookTarget.right * targetPoint.x )+ (lookTarget.up*targetPoint.y)+(lookTarget.forward*targetPoint.z));
+        //localPoint = (lookTarget.rotation * new Vector3(1, 1, 1));
+        //localPoint.Scale(targetPoint);
         transform.position = Vector3.MoveTowards(transform.position,localPoint, speed*Time.deltaTime);
 
         transform.LookAt(lookTarget);
