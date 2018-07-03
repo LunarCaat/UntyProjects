@@ -23,7 +23,7 @@ public class CamMovementConTransform : MonoBehaviour {
         //localPoint.Scale(targetPoint);
         transform.position = Vector3.MoveTowards(transform.position,localPoint, speed*Time.deltaTime);
 
-        transform.LookAt(lookTarget);
+        transform.LookAt (lookTarget.position + Vector3.up * 1.5f);
 
 
 

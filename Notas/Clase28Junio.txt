@@ -1,0 +1,6 @@
+Para normalizar:
+1- Calcular el offset(o)
+2-Calcular las escala inversa(k)
+
+N(X)=(x-o)*k
+

@@ -10,7 +10,10 @@ public class PlatformMovement3DA51 : MonoBehaviour {
     Vector3 movement;
     Quaternion rotation;
 
+
     public Animator animatorController;
+    public PlayerScript playerScript;
+
 
     bool grounded;
 
@@ -41,7 +44,7 @@ public class PlatformMovement3DA51 : MonoBehaviour {
         if (verticalMovement != 0) {
             movement += transform.forward * movementSpeed * verticalMovement * Time.fixedDeltaTime;
         }
-
+        animatorController.SetFloat("forwardSpeed", NormalizeMovement(verticalMovement));
         rigidbodyComponent.MovePosition (movement);
         rigidbodyComponent.MoveRotation (rotation);
 	}
@@ -49,7 +52,14 @@ public class PlatformMovement3DA51 : MonoBehaviour {
     void Update () {
         if (Input.GetKeyDown(KeyCode.Space) && grounded) {
             rigidbodyComponent.AddForce (Vector3.up * 10f, ForceMode.Impulse);
-        }     
+            playerScript.ModifyHP(-1);
+        }
+
+    }
+
+    float NormalizeMovement(float targetMovement){
+        
+        return (targetMovement+1)/2;
     }
 
     void OnCollisionStay (Collision collision) {
