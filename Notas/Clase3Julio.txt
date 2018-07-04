@@ -1,0 +1,3 @@
+También se reproducir con la animacion en otra parte el giro del collider.
+También se puede hacer con corutinas, como un proceso aparte.
+El sábado va a ser la recuperación a las 3:30pm.

@@ -53,16 +53,33 @@ public class PlatformMovement3DA51 : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) && grounded) {
             rigidbodyComponent.AddForce (Vector3.up * 10f, ForceMode.Impulse);
             playerScript.ModifyHP(-1);
+        }else if(Input.GetKeyDown(KeyCode.N)){
+            Attack();
         }
 
     }
+    void Attack(){
+        playerScript.currentPower.AttackRoundAbout();
+    }
+
 
     float NormalizeMovement(float targetMovement){
         
         return (targetMovement+1)/2;
     }
 
-    void OnCollisionStay (Collision collision) {
+	private void OnTriggerEnter(Collider other)
+	{
+        if(other.CompareTag("Power")){
+            PowerBallBehaviour targetPower = other.GetComponent<PowerBallBehaviour>();
+            if(playerScript.currentPower!=null || playerScript.currentPower != targetPower){
+                playerScript.currentPower = targetPower;
+                targetPower.AssignActivePlayer(this);
+            }
+        }
+	}
+
+	void OnCollisionStay (Collision collision) {
         if (!groundCollection.Contains (collision.collider)) {
             foreach (ContactPoint contact in collision.contacts) {
                 Debug.DrawRay (contact.point, contact.normal * 5f, Color.red, 1f);
