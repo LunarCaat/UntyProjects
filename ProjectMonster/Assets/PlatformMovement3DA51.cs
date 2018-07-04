@@ -46,10 +46,15 @@ public class PlatformMovement3DA51 : MonoBehaviour {
             Vector3 direction = (horizontalMovement * Vector3.right + verticalMovement * Vector3.forward);
             if (direction.magnitude > 1) direction = direction.normalized;
             movement += direction * movementSpeed * Time.fixedDeltaTime;
-            Debug.Log(direction);
+            //Debug.Log(direction);
             rigidbodyComponent.MovePosition(movement);
-            rotationTemp = Quaternion.FromToRotation(Vector3.forward, direction);
-            if(rotationTemp!=rotation)  rigidbodyComponent.MoveRotation(rotation);
+            rotationTemp = Quaternion.LookRotation(direction, Vector3.up);
+            animatorController.SetFloat("speed",direction.magnitude);
+            if(rotationTemp!=rotation){
+                //Debug.Log(rotationTemp.eulerAngles);
+                rigidbodyComponent.rotation = rotationTemp;
+                //Debug.Log(rigidbodyComponent.rotation.eulerAngles);
+            }  
         }
         
         
