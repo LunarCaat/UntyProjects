@@ -1,0 +1,8 @@
+
+Para cuando un personaje este encima de otro, se le puede hacer un highlight dependiendo que tan cerca este del otro.
+
+Intentar cambiar sombra a blob (circular) para experimentar.
+
+Se podría usar las pantallas de retry y loading para que el jugador
+no vea lo que esta sucediendo en la pantalla mientras se hace algo
+que le puede quitar la inmersión del personaje.

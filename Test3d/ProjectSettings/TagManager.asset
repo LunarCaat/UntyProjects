@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Switch
   - Power
+  - Damageable
   layers:
   - Default
   - TransparentFX

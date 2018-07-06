@@ -7,6 +7,7 @@ public class PowerBallBehaviour : MonoBehaviour
 
     public PlatformMovement3DA51 activePlayer;
     public Collider triggerArea;
+    public Collider damageArea;
     public readonly string containerName = "PowerContainer";
     public readonly Vector3 idlePoint = new Vector3(0.5f, 0.75f, 0f);
     public readonly Vector3 center = new Vector3(0f, 0.75f, 0f);
@@ -44,11 +45,21 @@ public class PowerBallBehaviour : MonoBehaviour
         waitForNextAction = true;
         transform.parent.localPosition = center;
         GetComponent<Animator>().SetTrigger("Roundabout");
+        damageArea.enabled = true;
     }
 
     public void ResetPoint()
     {
         transform.parent.localPosition = idlePoint;
         waitForNextAction = false;
+        damageArea.enabled = false;
     }
+
+
+	private void OnTriggerEnter(Collider other)
+	{
+        if(other.CompareTag("Damageable")){
+            other.GetComponent<EnemyObject>().TakeDamage();
+        }
+	}
 }
