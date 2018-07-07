@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BasicEnemy : EnemyObject {
     public int health;
+    [SerializeField]
     bool invulnerable = false;
     public PlatformMovement3DA51 target;
     public Vector3 planarTargetDistance{ get { return new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z); }}
@@ -31,6 +32,7 @@ public class BasicEnemy : EnemyObject {
 
 
     public void ResetInvulnerable(){
+
         invulnerable = false;
     }
 }
