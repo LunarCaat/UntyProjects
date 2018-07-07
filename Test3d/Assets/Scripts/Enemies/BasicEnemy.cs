@@ -10,13 +10,24 @@ public class BasicEnemy : EnemyObject {
     public Vector3 planarTargetDistance{ get { return new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z); }}
     public float colorIndex = 0f;
     public Gradient damage;
+    public Renderer enemyRenderer;
+
+	private void Start()
+	{
+        enemyRenderer = transform.GetChild(1).GetComponent<Renderer>();
+	}
 
 	void Update()
 	{
         if(target!=null){
             transform.forward = (planarTargetDistance - transform.position).normalized;
         }
-        transform.GetChild(1).GetComponent<Renderer>().material.color = damage.Evaluate(colorIndex);
+
+        int materialLength = enemyRenderer.materials.Length;
+        for (int i =0; i < materialLength;i++){
+            enemyRenderer.materials[i].color = damage.Evaluate(colorIndex);
+        }
+
     }
 
 	public override void TakeDamage()
@@ -34,5 +45,8 @@ public class BasicEnemy : EnemyObject {
     public void ResetInvulnerable(){
 
         invulnerable = false;
+        if(health<0){
+            Destroy(gameObject);
+        }
     }
 }
