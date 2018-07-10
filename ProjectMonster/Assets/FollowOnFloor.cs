@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class FollowOnFloor : MonoBehaviour {
     public Transform target;
-    public bool dostartActive;
+    public bool dostartActive =true;
     bool isEnabled=true;
-    SpriteRenderer spriteRenderer;
+    public Vector3 offset;
+    Renderer spriteRenderer;
 	// Use this for initialization
 	void Start () {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<Renderer>();
         SetFollowEnabled(dostartActive);
 	}
 	
@@ -38,6 +39,6 @@ public class FollowOnFloor : MonoBehaviour {
     }
 
     void copyPosition(){
-        transform.position = target.position;
+        transform.position = new Vector3(target.position.x,transform.position.y, target.position.z)+offset;
     }
 }
