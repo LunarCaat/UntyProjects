@@ -219,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 655577123}
   targetHeight: 0
-  targetPoint: {x: 0, y: 5, z: -5}
+  targetPoint: {x: 0, y: 10, z: -10}
   speed: 4.5
 --- !u!20 &282840813
 Camera:

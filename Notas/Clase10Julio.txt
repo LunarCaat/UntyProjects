@@ -1,0 +1,20 @@
+Questing
+Se envía mensajes de cada acción independientemente si se espera eso o no.
+Por ejemplo si una acción a registrar es agarra, no importa si se agarra un
+lapicero, mota o piedra, igual se registra por mas que no signifique nada.
+
+Quest(action, name/tag/type,amount)
+
++ es publico
+- es privado
+
+Quest
++ID
++action			+Resolve
++type
++currentAmmount
++targetAmmount
++Check(action,type)
+
+QuestManager
+

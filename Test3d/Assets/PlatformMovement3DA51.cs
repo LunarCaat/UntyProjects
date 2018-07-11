@@ -76,6 +76,7 @@ public class PlatformMovement3DA51 : MonoBehaviour {
             if(playerScript.currentPower!=null || playerScript.currentPower != targetPower){
                 playerScript.currentPower = targetPower;
                 targetPower.AssignActivePlayer(this);
+                QuestManager.instance.Check("obtain", targetPower.powerName);
             }
         }
 	}
