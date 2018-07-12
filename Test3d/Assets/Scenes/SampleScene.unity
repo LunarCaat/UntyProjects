@@ -3726,6 +3726,11 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114121010607078242, guid: 6d4bda2d60afc48a0af32b2bb42b4c62,
+        type: 2}
+      propertyPath: powerName
+      value: FireBall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d4bda2d60afc48a0af32b2bb42b4c62, type: 2}
   m_IsPrefabParent: 0

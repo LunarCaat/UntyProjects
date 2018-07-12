@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Quest {
-    
+public class Quest
+{
+
     public readonly string id;
     public string action;
     public string type;
@@ -13,8 +14,8 @@ public class Quest {
 
     public string next;
 
-
-    public Quest(string id,string action, string type, int targetAmmount, string next = null){
+    public Quest(string id, string action, string type, int targetAmmount, string next = null)
+    {
         this.id = id;
         this.action = action;
         this.type = type;
@@ -23,17 +24,17 @@ public class Quest {
         currentAmmount = 0;
     }
 
-
-    public bool Check(string action, string type, int ammount =1){
+    public bool Check(string action, string type, int ammount = 1)
+    {
         if (action == this.action && type == this.type)
         {
             currentAmmount += ammount;
             if (currentAmmount == targetAmmount)
             {
-                if(!string.IsNullOrEmpty(next)){
+                if (!string.IsNullOrEmpty(next))
+                {
                     QuestManager.instance.Activate(next);
                 }
-                QuestManager.instance.Activate(next);
                 return true;
             }
         }
