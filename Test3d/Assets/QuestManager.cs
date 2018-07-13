@@ -11,6 +11,8 @@ public class QuestManager : MonoBehaviour
     public List<Quest> active;
     public List<Quest> completed;
 
+    public QuestActions questActions;
+
     void Awake()
     {
         if (instance == null)
@@ -27,8 +29,8 @@ public class QuestManager : MonoBehaviour
         active = new List<Quest>();
         completed = new List<Quest>();
         //Created some Quests
-        inactive.Add(new Quest("QT01", "obtain", "FireBall", 1, "QT02"));
-        inactive.Add(new Quest("QT02", "destroy", "BasicEnemy", 1));
+        inactive.Add(new Quest("QT01", "obtain", "FireBall", 1, "QT02").SetMessage("DisableGate",0));
+        inactive.Add(new Quest("QT02", "destroy", "BasicEnemy", 1).SetMessage("DisableGate", 1));
         //Added my first Quest to active
         Activate("QT01");
     }
@@ -47,6 +49,7 @@ public class QuestManager : MonoBehaviour
             if (active[i].Check(action, type))
             {
                 Debug.Log("Completed " + active[i].id);
+                questActions.SendMessage(active[i].message.methodName,active[i].message.paramValue);
                 removal.Add(active[i]);
                 i--;
             }

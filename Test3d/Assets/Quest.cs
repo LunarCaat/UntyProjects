@@ -5,12 +5,24 @@ using UnityEngine;
 [System.Serializable]
 public class Quest
 {
+    public class Message{
+        public string methodName;
+        public object paramValue;
+
+
+        public Message (string methodName, object paramValue){
+            this.methodName = methodName;
+            this.paramValue = paramValue;
+        }
+    }
 
     public readonly string id;
     public string action;
     public string type;
     public int currentAmmount;
     public int targetAmmount;
+
+    public Message message; 
 
     public string next;
 
@@ -39,5 +51,11 @@ public class Quest
             }
         }
         return false;
+    }
+
+
+    public Quest SetMessage(string method, object param){
+        message = new Message(method, param);
+        return this;
     }
 }

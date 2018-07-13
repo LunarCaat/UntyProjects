@@ -1,0 +1,3 @@
+En QuestActions se puede usar corutinas para que por ejemplo se abra la puerta
+después de un tiempo
+Para los eventos es ideal usar clases
