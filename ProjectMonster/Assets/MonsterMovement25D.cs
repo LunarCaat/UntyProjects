@@ -34,6 +34,12 @@ public class MonsterMovement25D : MonoBehaviour {
     public float cannonDistance = 1f;
     public GameObject bullet;
     public Transform sightObject;
+
+
+    public List<Color> colors = new List<Color>();
+    int colorIndex = 0;
+    public int ColorIndex { get { return colorIndex; } }
+
     // Use this for initialization
     void Start() {
         viewCamera = Camera.main;
@@ -133,7 +139,31 @@ public class MonsterMovement25D : MonoBehaviour {
         {
             Shoot();
         }
+        float scrollWheelValue = Input.GetAxis("Mouse ScrollWheel");
+        if (scrollWheelValue != 0)
+        {
+            MoveColor(-scrollWheelValue);
+        }
+
     }
+
+    void MoveColor(float moveValue)
+    {
+        moveValue *= 10;
+        for (int i = 0; i < Mathf.Abs(moveValue); i++)
+        {
+            colorIndex += 1 * (int)Mathf.Sign(moveValue);
+            if (colorIndex >= colors.Count)
+            {
+                colorIndex = 0;
+            }
+            else if (colorIndex < 0)
+            {
+                colorIndex = colors.Count - 1;
+            }
+        }
+    }
+
     void LateUpdate()
     {
         Vector3 cursorWithTransformHeight = cursorPosition;
@@ -208,6 +238,7 @@ public class MonsterMovement25D : MonoBehaviour {
     }
     void Shoot()
     {
-        Instantiate(bullet, transform.position + monsterUp * cannonDistance, Quaternion.LookRotation(monsterUp, Vector3.up));
+        Renderer bulletRenderer = Instantiate(bullet, transform.position + monsterUp * cannonDistance, Quaternion.LookRotation(monsterUp, Vector3.up)).GetComponent<Renderer>();
+        bulletRenderer.material.color = colors[colorIndex];
     }
 }
