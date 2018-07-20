@@ -9,7 +9,29 @@ public class EnemyEntity : DamageableObject {
     public float colorIndex = 0f;
     public Gradient damage;
     public Renderer enemyRenderer;
-    public override void TakeDamage()
+
+
+    public delegate void EnemyBehaviour();
+    public event EnemyBehaviour currentBehaviour;
+
+
+    public FSM enemyStateMachine;
+
+	protected virtual void Start()
+	{
+        
+        enemyRenderer = transform.GetChild(1).GetComponent<Renderer>();
+	}
+
+    protected virtual void Update()
+	{
+        Debug.Log("Updating parent");
+        if (currentBehaviour != null)
+            currentBehaviour();
+	}
+
+
+	public override void TakeDamage()
     {
         if (!invulnerable)
         {
@@ -30,13 +52,28 @@ public class EnemyEntity : DamageableObject {
             Destroy(gameObject);
         }
     }
-    protected void SetRenderColor()
+
+    protected void SetCurrentBehaviour(EnemyBehaviour enemyBehaviour){
+        currentBehaviour = enemyBehaviour;
+    }
+    protected virtual void SendEnemyEvent(int eventIndex){
+        enemyStateMachine.SendEvent(eventIndex);
+    }
+
+
+    protected void SetRenderColor(float gradientPick)
     {
         int materialLength = enemyRenderer.materials.Length;
         for (int i = 0; i < materialLength; i++)
         {
-            enemyRenderer.materials[i].color = damage.Evaluate(colorIndex);
+            enemyRenderer.materials[i].color = damage.Evaluate(gradientPick);
         }
     }
+    public virtual void TriggerEnterCall(GameObject objRef){
+        
+    }
+    public virtual void TriggerExitCall(GameObject objRef)
+    {
 
+    }
 }

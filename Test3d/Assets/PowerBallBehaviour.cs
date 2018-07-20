@@ -64,4 +64,5 @@ public class PowerBallBehaviour : MonoBehaviour
             other.GetComponent<DamageableObject>().TakeDamage();
         }
 	}
+
 }

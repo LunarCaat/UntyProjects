@@ -1,0 +1,4 @@
+Para los ataques se puede:
+-Tener un numero determinado de “bombas”
+-Tener una barra de carga que cuando se llene se pueda ejecutar la  bomba
+-Ir consiguiendo las bombas como objetos coleccionables.
