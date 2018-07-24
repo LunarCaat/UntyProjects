@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 23889304997090890}
   - component: {fileID: 135398939080186070}
   - component: {fileID: 114040662824997380}
+  - component: {fileID: 54700693337873532}
   m_Layer: 0
   m_Name: SphereTest
   m_TagString: Untagged
@@ -115,6 +116,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1700086369169154}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54700693337873532
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700086369169154}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!96 &96440462757009734
 TrailRenderer:
   serializedVersion: 2
@@ -227,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 11
+  damagePower: 1
 --- !u!135 &135398939080186070
 SphereCollider:
   m_ObjectHideFlags: 1

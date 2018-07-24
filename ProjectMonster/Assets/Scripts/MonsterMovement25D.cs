@@ -39,6 +39,9 @@ public class MonsterMovement25D : MonoBehaviour {
     public List<Color> colors = new List<Color>();
     int colorIndex = 0;
     public int ColorIndex { get { return colorIndex; } }
+	
+	public float shootDelay=2f;
+	private bool isShooting =false;
 
     // Use this for initialization
     void Start() {
@@ -137,7 +140,12 @@ public class MonsterMovement25D : MonoBehaviour {
         }
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            isShooting=true;
+			StartCoroutine(ShootContinuously(shootDelay));
+        }
+		else if (Input.GetMouseButtonUp(0))
+        {
+            isShooting=false;
         }
         float scrollWheelValue = Input.GetAxis("Mouse ScrollWheel");
         if (scrollWheelValue != 0)
@@ -241,4 +249,11 @@ public class MonsterMovement25D : MonoBehaviour {
         Renderer bulletRenderer = Instantiate(bullet, transform.position + monsterUp * cannonDistance, Quaternion.LookRotation(monsterUp, Vector3.up)).GetComponent<Renderer>();
         bulletRenderer.material.color = colors[colorIndex];
     }
+	IEnumerator ShootContinuously(float delay){
+		while(isShooting){
+			yield return new WaitForSeconds(delay);
+			Shoot();
+		}
+	}
+	
 }

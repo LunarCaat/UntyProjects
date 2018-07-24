@@ -12,11 +12,12 @@ public class RegularEnemy : EnemyEntity {
 
     Transform followTarget;
     float resetFollowTime = 2f;
+    [SerializeField]
     float currentFollowTime = 0;
     bool insideFollowReach = false;
+    Vector3 planarTargetDistance { get { return new Vector3(followTarget.transform.position.x, transform.position.y, followTarget.transform.position.z); } }
 
-
-	// Use this for initialization
+    // Use this for initialization
     protected override void Start(){
         base.Start();
         enemyStateMachine = FSM.Create(2, 2);
@@ -74,6 +75,9 @@ public class RegularEnemy : EnemyEntity {
         currentFollowTime = 0;
         SendEnemyEvent(0);
     }
-   
+    public override void TriggerExitCall(GameObject objRef)
+    {
+        insideFollowReach = false;
+    }
 
 }

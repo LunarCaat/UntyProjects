@@ -8,14 +8,14 @@ public class DetectionArea : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            enemyEntity.TriggerEnterCall();
+            enemyEntity.TriggerEnterCall(other.gameObject);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            enemyEntity.TriggerExitCall();
+            enemyEntity.TriggerExitCall(other.gameObject);
         }
     }
 }
