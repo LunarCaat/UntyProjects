@@ -69,6 +69,7 @@ public class EnemyEntity : Damageable {
             hp -= damage;
             //GetComponent<Animator> ().SetTrigger ("TakeDamage");
 			if (hp <= 0) {
+                invulnerable = true;
 				QuestManager.instance.Check ("destroy", gameObject.tag);
 				Destroy (gameObject);
 			}

@@ -16,12 +16,18 @@ public class BulletBehaviour : MonoBehaviour {
     }
     IEnumerator DestroyInSeconds(float destroyTime){
         yield return new WaitForSeconds(destroyTime);
-        Destroy(gameObject);
+        DestroyThis();
     }
     void OnTriggerEnter(Collider other){
 		Damageable damagedObject =other.GetComponent<Damageable>();
 		if(damagedObject){
 			damagedObject.TakeDamage(damagePower);
+            DestroyThis();
 		}
 	}
+
+    void DestroyThis(){
+        //Cambiar a implementacion con object pool despues
+        Destroy(gameObject);
+    }
 }

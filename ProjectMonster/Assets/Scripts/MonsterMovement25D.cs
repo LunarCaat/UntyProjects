@@ -36,6 +36,7 @@ public class MonsterMovement25D : MonoBehaviour {
     public Transform sightObject;
 
 
+
     public List<Color> colors = new List<Color>();
     int colorIndex = 0;
     public int ColorIndex { get { return colorIndex; } }
@@ -138,15 +139,12 @@ public class MonsterMovement25D : MonoBehaviour {
 
             cursorPosition = m_hit.point + Vector3.up * 0.1f;
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0)&&!isShooting)
         {
             isShooting=true;
 			StartCoroutine(ShootContinuously(shootDelay));
         }
-		else if (Input.GetMouseButtonUp(0))
-        {
-            isShooting=false;
-        }
+		
         float scrollWheelValue = Input.GetAxis("Mouse ScrollWheel");
         if (scrollWheelValue != 0)
         {
@@ -250,10 +248,11 @@ public class MonsterMovement25D : MonoBehaviour {
         bulletRenderer.material.color = colors[colorIndex];
     }
 	IEnumerator ShootContinuously(float delay){
-		while(isShooting){
+        while(Input.GetMouseButton(0)){
 			yield return new WaitForSeconds(delay);
 			Shoot();
 		}
+        isShooting = false;
 	}
 	
 }
