@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114597292671339662}
   - component: {fileID: 114050528557586020}
   - component: {fileID: 114612168836675614}
+  - component: {fileID: 114007160757941904}
   - component: {fileID: 114523785811024706}
   m_Layer: 5
   m_Name: Canvas
@@ -83,6 +84,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114007160757941904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757011305273008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d75191f54a05426bb45491dc06ea52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114050528557586020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBar: {fileID: 114146178800571592}
+  playerScript: {fileID: 0}
   barColors:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
@@ -124,9 +137,9 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  playerScript: {fileID: 0}
   restartPanel: {fileID: 114790847551706228}
   restartSpeed: 1.5
+  camBehaviour: {fileID: 0}
 --- !u!114 &114146178800571592
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -3,81 +3,88 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
 
-public class RegularEnemy : EnemyEntity {
+public class RegularEnemy : EnemyEntity
+{
 
-    public enum RegularState{
+    public enum RegularState
+    {
         Patrol,
         Follow
     }
 
     Transform followTarget;
-    float resetFollowTime = 2f;
-    [SerializeField]
-    float currentFollowTime = 0;
+    float resetFollowTime = 3f;
+    float currentFollowTime = 0f;
     bool insideFollowReach = false;
     Vector3 planarTargetDistance { get { return new Vector3(followTarget.transform.position.x, transform.position.y, followTarget.transform.position.z); } }
 
-    // Use this for initialization
-    protected override void Start(){
+    protected override void Start()
+    {
         base.Start();
         enemyStateMachine = FSM.Create(2, 2);
         enemyStateMachine.SetRelation(0, 0, 1);
         enemyStateMachine.SetRelation(1, 1, 0);
 
-        SetCurrentBehaviour(GetBehaviourByName(enemyStateMachine.currentStateIndex));
+        SetCurrentBehaviour(GetBehaviourByIndexName(enemyStateMachine.currentStateIndex));
     }
-	
-	// Update is called once per frame
-	protected override void Update () {
+
+    protected override void Update()
+    {
         base.Update();
         SetRenderColor(colorIndex);
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
-            SetCurrentBehaviour(Patrol);
-        } else if(Input.GetKeyDown(KeyCode.Alpha1)){
-            SetCurrentBehaviour(Follow);
-        }
-	}
-	protected override void SendEnemyEvent(int eventIndex)
-	{
-        base.SendEnemyEvent(eventIndex);
-        SetCurrentBehaviour(GetBehaviourByName(enemyStateMachine.currentStateIndex));
-	}
-
-    public EnemyBehaviour GetBehaviourByName(int targetIndex){
-        MethodInfo methodInfo = GetType().GetMethod(((RegularState) targetIndex).ToString(), BindingFlags.Instance| BindingFlags.NonPublic);
-        Debug.Log("__" + methodInfo);
-        return (EnemyBehaviour) System.Delegate.CreateDelegate(typeof(EnemyBehaviour),this, methodInfo);
     }
 
-	void Follow(){
+    protected override void SendEnemyEvent(int eventIndex)
+    {
+        base.SendEnemyEvent(eventIndex);
+        SetCurrentBehaviour(GetBehaviourByIndexName(enemyStateMachine.currentStateIndex));
+    }
+
+    public EnemyBehaviour GetBehaviourByIndexName(int targetIndex)
+    {
+        MethodInfo methodInfo = GetType().GetMethod(((RegularState)targetIndex).ToString(), BindingFlags.Instance | BindingFlags.NonPublic);
+        Debug.Log("__" + methodInfo.Name);
+        return (EnemyBehaviour)System.Delegate.CreateDelegate(typeof(EnemyBehaviour), this, methodInfo);
+    }
+
+    void Patrol()
+    {
+        Debug.Log("Im on Patrol");
+        transform.Rotate(Vector3.up * 85f * Time.deltaTime);
+    }
+
+    void Follow()
+    {
         Debug.Log("Following a target");
-        transform.forward = (planarTargetDistance - transform.position).normalized;
-        transform.position += transform.forward * 4.5f * Time.deltaTime;
-        if(!insideFollowReach){
+        Vector3 currentTargetDistance = planarTargetDistance - transform.position;
+        if (currentTargetDistance.magnitude >= 3f)
+        {
+            transform.forward = (currentTargetDistance).normalized;
+            transform.position += transform.forward * speed * Time.deltaTime;
+        }
+        if (!insideFollowReach)
+        {
             currentFollowTime += Time.deltaTime;
         }
-        if(currentFollowTime >= resetFollowTime){
-            currentFollowTime = 0;
+        if (currentFollowTime >= resetFollowTime)
+        {
+            currentFollowTime = 0f;
             insideFollowReach = false;
             followTarget = null;
             SendEnemyEvent(1);
         }
     }
 
-    void Patrol(){
-        Debug.Log("I'm on Patrol");
-        transform.Rotate(Vector3.up * 85f * Time.deltaTime);
-    }
     public override void TriggerEnterCall(GameObject objRef)
     {
         followTarget = objRef.transform;
         insideFollowReach = true;
-        currentFollowTime = 0;
+        currentFollowTime = 0f;
         SendEnemyEvent(0);
     }
+
     public override void TriggerExitCall(GameObject objRef)
     {
         insideFollowReach = false;
     }
-
 }

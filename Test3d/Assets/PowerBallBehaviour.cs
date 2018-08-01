@@ -57,12 +57,17 @@ public class PowerBallBehaviour : MonoBehaviour
         damageArea.enabled = false;
     }
 
+    public bool Compare(PowerBallBehaviour other)
+    {
+        return this == other;
+    }
 
-	private void OnTriggerEnter(Collider other)
-	{
-        if(other.CompareTag("Damageable")){
-            other.GetComponent<DamageableObject>().TakeDamage();
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Damageable"))
+        {
+            Debug.Log(powerName.Replace("Ball", ""));
+            other.GetComponent<DamageableObject>().TakeDamage(powerName.Replace("Ball", ""));
         }
-	}
-
+    }
 }

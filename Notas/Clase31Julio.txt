@@ -1,0 +1,3 @@
+El render del personaje en un fps es diferente al actual que otros personajes
+ven. Por ejemplo en DOOM, solo se ve la pistola, pero eso implicaría
+que la vista esta detrás de la pistola y no seria la vision del mismo personaje.

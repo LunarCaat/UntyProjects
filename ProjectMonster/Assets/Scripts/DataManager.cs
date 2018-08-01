@@ -42,7 +42,7 @@ public class DataManager : MonoBehaviour {
 	public void SaveGameData(){
 		string dataAsJson = JsonUtility.ToJson (currentData);
 		string filePath =Path.Combine(Application.persistentDataPath,gameFileName);
-		
+        Debug.Log("Saved in "+filePath);
 		File.WriteAllText (filePath, dataAsJson);
 	}
 }

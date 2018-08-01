@@ -7,7 +7,8 @@ public class RegularEnemy : EnemyEntity {
 
     public enum RegularState {
         Patrol,
-        Follow
+        Follow,
+        Death
     }
 
     Transform followTarget;
@@ -18,10 +19,11 @@ public class RegularEnemy : EnemyEntity {
 
     protected override void Start () {
         base.Start ();
-        enemyStateMachine = FSM.Create (2, 2);
+        enemyStateMachine = FSM.Create (3, 3);
         enemyStateMachine.SetRelation (0, 0, 1);
         enemyStateMachine.SetRelation (1, 1, 0);
-
+        enemyStateMachine.SetRelation(0, 2, 2);
+        enemyStateMachine.SetRelation(1, 2, 2);
         SetCurrentBehaviour (GetBehaviourByIndexName (enemyStateMachine.currentStateIndex));
     }
 
@@ -63,6 +65,11 @@ public class RegularEnemy : EnemyEntity {
             SendEnemyEvent (1);
         }
     }
+    void Death(){
+        //PlayDeathAnimation
+        //When finish stop
+    }
+
 
     public override void TriggerEnterCall (GameObject objRef) {
         followTarget = objRef.transform;
