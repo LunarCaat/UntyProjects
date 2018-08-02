@@ -246,8 +246,18 @@ public class MonsterMovement25D : MonoBehaviour {
     }
     void Shoot()
     {
-        Renderer bulletRenderer = Instantiate(bullet, transform.position + monsterUp * cannonDistance, Quaternion.LookRotation(monsterUp, Vector3.up)).GetComponent<Renderer>();
+        GameObject bulletObj = Instantiate(bullet, transform.position + monsterUp * cannonDistance, Quaternion.LookRotation(monsterUp, Vector3.up));
+        Renderer bulletRenderer = bulletObj.GetComponent<Renderer>();
+        BulletBehaviour bulletBehaviour    = bulletObj.GetComponent<BulletBehaviour>();
         bulletRenderer.material.color = colors[colorIndex];
+        if (colorIndex==1){
+            bulletBehaviour.powerName = "FrostBall";
+        }
+        if (colorIndex == 0)
+        {
+            bulletBehaviour.powerName = "FireBall";
+        }
+
     }
 	IEnumerator ShootContinuously(float delay){
         while(Input.GetMouseButton(0)){

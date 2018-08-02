@@ -602,8 +602,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 2.5, z: -22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1275380943}
   - {fileID: 1357763789}
+  - {fileID: 1275380943}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b54b400f724674250b249d6a92e9aed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 655577123}
+  target: {fileID: 1275380943}
   dostartActive: 1
   offset: {x: 0, y: 0, z: -0.5}
 --- !u!23 &660543974
@@ -1118,7 +1118,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 655577123}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1275380944
 Animator:
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   sightObject: {fileID: 1357763789}
   colors:
   - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 0.09710693, g: 1, b: 0, a: 0}
+  - {r: 0, g: 0.9355135, b: 1, a: 0}
   shootDelay: 0.15
 --- !u!1001 &1285577101
 Prefab:
@@ -1412,7 +1412,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 655577123}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &1357763790
 SpriteRenderer:
