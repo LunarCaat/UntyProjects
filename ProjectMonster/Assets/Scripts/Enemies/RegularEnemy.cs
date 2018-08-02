@@ -48,7 +48,7 @@ public class RegularEnemy : EnemyEntity {
 		if(animator2d)
 		animator2d.SetInteger("moveState", 0);
         Debug.Log ("Im on Patrol");
-        transform.Rotate (Vector3.up * 85f * Time.deltaTime);
+        //transform.Rotate (Vector3.up * 85f * Time.deltaTime);
     }
 
     void Follow () {
@@ -57,8 +57,8 @@ public class RegularEnemy : EnemyEntity {
         Debug.Log ("Following a target");
         Vector3 currentTargetDistance = planarTargetDistance - transform.position;
         if (currentTargetDistance.magnitude >= 3f) {
-            transform.forward = (currentTargetDistance).normalized;
-            transform.position += transform.forward * speed * Time.deltaTime;
+            Vector3 characterForward = (currentTargetDistance).normalized;
+            transform.position += characterForward * speed * Time.deltaTime;
         }
         if (!insideFollowReach) {
             currentFollowTime += Time.deltaTime;

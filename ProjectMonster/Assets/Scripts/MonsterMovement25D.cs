@@ -176,7 +176,10 @@ public class MonsterMovement25D : MonoBehaviour {
     {
         Vector3 cursorWithTransformHeight = cursorPosition;
         cursorWithTransformHeight.y = transform.position.y;
-        sightObject.position = (Vector3.Distance(cursorWithTransformHeight, transform.position) >= 1) ? cursorPosition : cursorPosition + monsterUp;
+        float distanceToPlayer = Vector3.Distance(cursorWithTransformHeight, transform.position);
+        sightObject.position = (distanceToPlayer >= 1) ? cursorPosition : cursorPosition + monsterUp;
+        float sightRescale = 1 + (distanceToPlayer) / 20;
+        sightObject.localScale = new Vector3(sightRescale,sightRescale,sightObject.localScale.z);
     }
 
     void OnTriggerEnter(Collider other)
