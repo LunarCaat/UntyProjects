@@ -5,6 +5,9 @@ using UnityEngine;
 public class BulletBehaviour : MonoBehaviour {
     public float speed = 1;
 	public int damagePower =1;
+	
+	public enum BulletType { ENEMY, PLAYER};
+    public BulletType type=BulletType.PLAYER; 
     // Use this for initialization
     void Start () {
         StartCoroutine(DestroyInSeconds(3f));
@@ -20,7 +23,7 @@ public class BulletBehaviour : MonoBehaviour {
     }
     void OnTriggerEnter(Collider other){
 		Damageable damagedObject =other.GetComponent<Damageable>();
-		if(damagedObject){
+		if(damagedObject && ((damagedObject is EnemyEntity&&type==BulletType.PLAYER)||(damagedObject is PlayerEntity&&type==BulletType.ENEMY))){
 			damagedObject.TakeDamage(damagePower);
             DestroyThis();
 		}

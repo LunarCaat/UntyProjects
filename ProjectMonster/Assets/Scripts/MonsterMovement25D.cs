@@ -53,7 +53,8 @@ public class MonsterMovement25D : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
-
+		if(UIManager.state==UIManager.GameState.NOT_FINISHED){
+			
         movement = transform.position;
         rotation = rigidbodyComponent.rotation;
 
@@ -121,11 +122,12 @@ public class MonsterMovement25D : MonoBehaviour {
             }
         }
 
-
+		}
 
     }
 
     void Update() {
+		if(UIManager.state==UIManager.GameState.NOT_FINISHED){
         if (Input.GetKeyDown(KeyCode.Space) && grounded) {
             rigidbodyComponent.AddForce(Vector3.up * 10f, ForceMode.Impulse);
         }
@@ -150,7 +152,7 @@ public class MonsterMovement25D : MonoBehaviour {
         {
             MoveColor(-scrollWheelValue);
         }
-
+		}
     }
 
     void MoveColor(float moveValue)

@@ -25,7 +25,7 @@ public class QuestManager : MonoBehaviour {
         completed = new List<Quest> ();
         //Created some Quests
         inactive.Add (new Quest ("QT01", "destroy", "RegularEnemy", 4, "QT02").SetMessage("DisableGate", 0));
-        inactive.Add (new Quest ("QT02", "destroy", "BasicEnemy", 1).SetMessage("DisableGate", 1));
+        inactive.Add (new Quest ("QT02", "destroy", "BossEnemy", 1).SetMessage("GameSuccess", 0));
         //Added my first Quest to active
         Activate ("QT01");
 	}

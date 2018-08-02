@@ -8,7 +8,7 @@ public class CharacterEntity : Damageable {
     public Gradient damageGradient;
 	protected Effect effect;
 	protected bool invulnerable = false;
-	public Renderer enemyRenderer;
+	public SpriteRenderer enemyRenderer;
 	public Color currentBase;
 	protected Color baseColor;
 	public float speed = 4.5f;
@@ -24,7 +24,8 @@ public class CharacterEntity : Damageable {
         if (effect != null) {
             if (effect.Update (Time.deltaTime)) {
                 currentBase = baseColor;
-                ApplyColor (currentBase);
+                //ApplyColor (currentBase);
+				ApplySpriteColor(currentBase);
                 speed = 4.5f;
                 effect = null;
             }
@@ -38,7 +39,8 @@ public class CharacterEntity : Damageable {
         if (changedBaseColor || gradientPick != 0f) {
             Color targetColor = damageGradient.Evaluate (gradientPick);
             if (changedBaseColor) { targetColor = (targetColor * 0.7f) + (currentBase * 0.3f); }
-            ApplyColor (targetColor);
+            //ApplyColor (targetColor);
+			ApplySpriteColor(targetColor);
         }
     }
 	public override void TakeDamage (int damage =1, string effectName = null) {
@@ -61,10 +63,16 @@ public class CharacterEntity : Damageable {
         }
     }
 	
-	protected void ApplyColor (Color targetColor) {
-        for (int i = 0; i < enemyRenderer.materials.Length; i++) {
-            enemyRenderer.materials[i].color = targetColor;
-        }
+	// protected void ApplyColor (Color targetColor) {
+        // for (int i = 0; i < enemyRenderer.materials.Length; i++) {
+            // enemyRenderer.materials[i].color = targetColor;
+        // }
+    // }
+	
+	protected void ApplySpriteColor (Color targetColor) {
+        
+            enemyRenderer.color = targetColor;
+        
     }
 	
 	
