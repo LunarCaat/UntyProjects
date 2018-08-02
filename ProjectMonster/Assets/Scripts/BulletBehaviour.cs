@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletBehaviour : MonoBehaviour {
     public float speed = 1;
 	public int damagePower =1;
+	public string powerName = "FrostBall";
 	
 	public enum BulletType { ENEMY, PLAYER};
     public BulletType type=BulletType.PLAYER; 
@@ -24,7 +25,7 @@ public class BulletBehaviour : MonoBehaviour {
     void OnTriggerEnter(Collider other){
 		Damageable damagedObject =other.GetComponent<Damageable>();
 		if(damagedObject && ((damagedObject is EnemyEntity&&type==BulletType.PLAYER)||(damagedObject is PlayerEntity&&type==BulletType.ENEMY))){
-			damagedObject.TakeDamage(damagePower);
+			damagedObject.TakeDamage(damagePower,powerName.Replace ("Ball", ""));
             DestroyThis();
 		}
 	}
