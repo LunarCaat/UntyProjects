@@ -20,7 +20,7 @@ public class OvertimeEffect : Effect {
         return done;
     }
 
-    protected override void OnApply (ref EnemyEntity enemyEntity, out Effect effect) {
+    protected override void OnApply (ref CharacterEntity enemyEntity, out Effect effect) {
         Debug.Log (name + " was applied");
         enemyEntity.speed = 1.5f;
         enemyEntity.currentBase = color;

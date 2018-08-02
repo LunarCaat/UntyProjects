@@ -18,7 +18,7 @@ public class Effect {
         return effect;
     }
 
-    public Effect Apply (EnemyEntity enemyEntity) {
+    public Effect Apply (CharacterEntity enemyEntity) {
         if (name == "None") { return null; }
         Effect effect;
         OnApply (ref enemyEntity, out effect);
@@ -29,7 +29,7 @@ public class Effect {
         return true;
     }
 
-    protected virtual void OnApply (ref EnemyEntity enemyEntity, out Effect effect) {
+    protected virtual void OnApply (ref CharacterEntity enemyEntity, out Effect effect) {
         effect = CreateEmpty ();
     }
 }
