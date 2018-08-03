@@ -188,7 +188,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   enemyRenderer: {fileID: 212626877746281532}
   currentBase: {r: 0, g: 0, b: 0, a: 0}
-  speed: 2
+  speed: 7
   health: 0
   animator2d: {fileID: 95051896403122994}
 --- !u!135 &135618691583873382
