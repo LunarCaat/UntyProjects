@@ -56,7 +56,7 @@ public class RegularEnemy : EnemyEntity {
 		animator2d.SetInteger("moveState", 1);
         Debug.Log ("Following a target");
         Vector3 currentTargetDistance = planarTargetDistance - transform.position;
-        if (currentTargetDistance.magnitude >= 3f) {
+        if (currentTargetDistance.magnitude >= 0.1f) {
             Vector3 characterForward = (currentTargetDistance).normalized;
             transform.position += characterForward * speed * Time.deltaTime;
         }
