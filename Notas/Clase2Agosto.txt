@@ -1,0 +1,11 @@
+La jerarquía de las clases se puede justificar para un fin practico
+Con practico se refiere tal como lo necesite el juego, si por ejemplo
+no hay conflicto en este prototipo esta bien.
+En los prototipos o proyectos pequeños no es necesario seguir
+un orden tan complicado de clases y scripts ya que solo se quiere
+reproducir una parte del juego en los primeros por ejemplo.
+Pero en proyectos medianos y/grandes seria recomendable seguir
+una logica de jerarquia.
+Si planeas hacer este juego mas grande tipo RPG, quizás si sea buena idea
+estructurarlo mejor y por ejemplo hacer el movimiento dentro
+de PlayerEntity.
