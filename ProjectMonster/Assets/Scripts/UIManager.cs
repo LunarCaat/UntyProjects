@@ -25,6 +25,12 @@ public class UIManager : MonoBehaviour {
     public Text successText;
     private bool finished=false;
 	
+	
+	public Transform collection;
+    public GameObject[] weaponPrefab;
+	int lastColorIndex;
+	public float spacing =75;
+	public MonsterMovement25D playerMovement;
 
     // public CamBehaviour camBehaviour;
     // CamBehaviour.CamData defaultData;
@@ -44,6 +50,13 @@ public class UIManager : MonoBehaviour {
         if (playerScript == null) {
             InitGameScripts ();
         }
+		
+		for (int i =0; i<weaponPrefab.Length;i++)
+        {
+            Instantiate(weaponPrefab[i],collection);
+            collection.GetChild(i).localPosition= new Vector3 (spacing*i,0,0);
+        }
+		lastColorIndex = playerMovement.ColorIndex;
 	}
 	
 	// Update is called once per frame
@@ -66,6 +79,19 @@ public class UIManager : MonoBehaviour {
             hpBar.color = barColors.Evaluate (hpBar.fillAmount);
         }
 		
+		
+		
+		if (lastColorIndex!= playerMovement.ColorIndex)
+        {
+            for (int i =0;i<collection.childCount;i++)
+            {
+                float targetSize = (i == playerMovement.ColorIndex) ? 50 : 30;
+                collection.GetChild(i).GetComponent<RectTransform>().sizeDelta = new Vector2(targetSize, targetSize);
+            }
+            Debug.Log("Weapon Changed!");
+        }
+        lastColorIndex = playerMovement.ColorIndex;
+
 		
 		
         // if (!isLoading && Input.GetKeyDown (KeyCode.T)) {
@@ -126,6 +152,8 @@ public class UIManager : MonoBehaviour {
 
     void InitGameScripts () {
         playerScript = FindPlayerInstance ();
+		
+		
         //camBehaviour = Camera.main.GetComponent<CamBehaviour> ();
         //defaultData = camBehaviour.GetCamData ();
     }
