@@ -11,10 +11,12 @@ public class CharacterEntity : Damageable {
 	public SpriteRenderer enemyRenderer;
 	public Color currentBase;
 	protected Color baseColor;
-	public float speed = 4.5f;
+	public float baseSpeed = 4.5f;
+	public float speed;
 	public bool changedBaseColor { get { return currentBase != baseColor; } }
 	
 	protected virtual void Start () {
+		speed=baseSpeed;
         //enemyRenderer = transform.GetChild (1).GetComponent<Renderer> ();
         currentBase = baseColor = enemyRenderer.material.color;
     }
@@ -26,7 +28,7 @@ public class CharacterEntity : Damageable {
                 currentBase = baseColor;
                 //ApplyColor (currentBase);
 				ApplySpriteColor(currentBase);
-                speed = 4.5f;
+                speed = baseSpeed;
                 effect = null;
             }
         }

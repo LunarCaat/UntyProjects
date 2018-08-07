@@ -90,7 +90,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65196572501578474
 BoxCollider:
@@ -166,7 +166,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   enemyRenderer: {fileID: 212299090325010062}
   currentBase: {r: 0, g: 0, b: 0, a: 0}
-  speed: 4.5
+  baseSpeed: 2
+  speed: 1
   health: 0
   animator2d: {fileID: 95111663623290386}
 --- !u!114 &114966892019222222

@@ -182,7 +182,7 @@ public class UIManager : MonoBehaviour {
     void showSuccessScreen()
     {
         
-        successText.text = "Congratulations!";
+        successText.text = "Congratulations "+DataManager.instance.currentData.playerName+"!";
         //timerText.enabled =false;
         successUI.SetActive(true);
     }

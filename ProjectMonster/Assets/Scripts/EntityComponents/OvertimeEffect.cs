@@ -22,7 +22,7 @@ public class OvertimeEffect : Effect {
 
     protected override void OnApply (ref CharacterEntity enemyEntity, out Effect effect) {
         Debug.Log (name + " was applied");
-        enemyEntity.speed = 1.5f;
+        enemyEntity.speed = enemyEntity.baseSpeed*(1/3f);
         enemyEntity.currentBase = color;
         effect = new OvertimeEffect (name, color, duration);
     }
