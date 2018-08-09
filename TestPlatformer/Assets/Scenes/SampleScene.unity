@@ -645,7 +645,7 @@ MonoBehaviour:
   health: 4
   maxHealth: 5
   rayDetectionDistance: 0.1
-  isFlipped: 0
+  isSpriteFacingLeft: 1
 --- !u!212 &891147902
 SpriteRenderer:
   m_ObjectHideFlags: 0

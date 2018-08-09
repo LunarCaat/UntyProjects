@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour {
     SpriteRenderer spriteRenderer;
 	
 	
-	public bool isFlipped=false;
+	public bool isSpriteFacingLeft=false;
 	// Use this for initialization
 	void Start () {
 		
@@ -34,9 +34,9 @@ public class Movement : MonoBehaviour {
             charRigidbody2D.velocity= new Vector2(horizontalSpeed* characterSpeed,charRigidbody2D.velocity.y);
         }
 		if (horizontalSpeed < 0) {
-            if (!spriteRenderer.flipX) { spriteRenderer.flipX = !isFlipped; }
+            if (spriteRenderer.flipX==isSpriteFacingLeft) { spriteRenderer.flipX = !isSpriteFacingLeft; }
         } else if (horizontalSpeed > 0) {
-            if (spriteRenderer.flipX) { spriteRenderer.flipX = isFlipped; }
+            if (spriteRenderer.flipX==!isSpriteFacingLeft) { spriteRenderer.flipX = isSpriteFacingLeft; }
         }
 
 	}
